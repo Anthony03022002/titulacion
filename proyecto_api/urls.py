@@ -14,8 +14,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from django import views
 from django.contrib import admin
 from django.urls import path, include
+
+from planes import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,4 +27,11 @@ urlpatterns = [
     path('', include('pagosMensuales.urls')),
     path('', include('planes.urls')),
     path('', include('productos.urls')),
+     path('', views.iniciarSesion, name='iniciarsesion'),
+    path('signup/', views.signup, name='signup'),
+    path('pagos/', views.pagos, name='pagos'),
+    path('cerrarSesion/', views.cerrarSesion, name='cerrarSesion'),
+    path('iniciarSesion/', views.iniciarSesion, name='iniciarSesion'),
+    path('crear/pago/', views.crearPago, name='crearPago'),
+    # path('', ReactView.as_view(), name='anything'),
 ]

@@ -1,7 +1,10 @@
-import { useForm } from "react-hook-form";
-import { createCliente } from "../api/clientes.api";
-import { useNavigate } from "react-router-dom";
+// En el archivo ClientesForm.jsx
 
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import { createCliente } from '../api/clientes.api';
+import { useNavigate } from 'react-router-dom';
+import Breadcrumbs from './Breadcrumbs';
 export const ClientesForm = () => {
   const {
     register,
@@ -9,15 +12,18 @@ export const ClientesForm = () => {
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit(async (data) => {
     await createCliente(data);
     navigate('/clientes');
   });
 
+  const breadcrumbsPaths = ['Home', 'Clientes', 'Nuevo Cliente'];
+
   return (
     <div>
+      <Breadcrumbs paths={breadcrumbsPaths} />
       <form onSubmit={onSubmit}>
         <input
           type="number"
