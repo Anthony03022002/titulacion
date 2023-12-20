@@ -19,6 +19,9 @@ export const ClientesForm = () => {
     navigate('/clientes');
   });
 
+
+
+
   const breadcrumbsPaths = ['Home', 'Clientes', 'Nuevo Cliente'];
 
   return (
@@ -49,6 +52,11 @@ export const ClientesForm = () => {
           {...register("direccion", { required: true })}
         />
         {errors.direccion && <span>Este campo es requerido</span>}
+         <input
+          type="text"
+          placeholder="Produto"
+          {...register("nombre_producto", { required: true })}
+        /> 
         <button>Guardar Cliente</button>
       </form>
     </div>

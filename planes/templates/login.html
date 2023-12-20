@@ -14,7 +14,11 @@
       {% csrf_token %}
       {{ form.as_p }}
       <button type="submit" class="login-button">Ingresar</button>
+      
+      <a class="registro-link" href="/signup">no tienes cuenta registrate</a>
+
     </form>
+    
   </div>
   <style>
     body {
@@ -76,5 +80,38 @@ button:hover {
   width: 90px; /* Ajusta el tamaño de la imagen según sea necesario */
   margin-right: 10px; /* Espacio entre la imagen y el texto */
 }
+.boton {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #4CAF50; /* Color de fondo del botón */
+    color: white; /* Color del texto del botón */
+    border: 1px solid #4CAF50; /* Borde del botón */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s;
+    margin-top: 10px; /* Espacio entre el botón y el elemento superior */
+  }
+
+  /* Cambia el color de fondo cuando pasas el ratón sobre el botón */
+  .boton:hover {
+    background-color: #24c2ea;
+  }
+  h2 {
+  text-align: left;
+  color: #333;
+  font-size: 1px;
+}
+.registro-link {
+  font-size: 18px;
+  margin-right: auto;
+  text-decoration: underline;
+  color: inherit; /* Mantener el color del texto original del contenedor */
+  cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
+  display: inline-block; /* Asegurar que el enlace no se extienda horizontalmente */
+  margin-top: 10px; /* Espaciado entre el enlace y otros elementos */
+}
+
 </style>
 {% endblock %}

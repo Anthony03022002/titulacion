@@ -4,7 +4,7 @@
 
   <div class="signup-container">
     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeBtwpi10Pn36gszpF7kbu_Z_nubUe9pZuwA&usqp=CAU" alt="Logo" class="logo-image">
-    <h1>Signup</h1>
+    <h1>Registrarse</h1>
 
     {% if error %}
       <p class="error-message">{{ error }}</p>
@@ -13,9 +13,12 @@
     <form method="POST" class="signup-form">
 
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form.as_p }} 
 
-      <button type="submit" class="signup-button">Signup</button>
+      <button type="submit" class="signup-button">registrar</button>
+
+      <a href="{% url 'iniciarSesion' %}" class="login-link">Regresar al Login</a>
+
 
     </form>
   </div>
@@ -64,7 +67,7 @@
   
   button {
     padding: 10px;
-    background-color: #54af4c;
+    background-color: #2cd237;
     color: rgb(248, 238, 49);
     border: none;
     border-radius: 4px;
@@ -73,12 +76,24 @@
   }
   
   button:hover {
-    background-color: #1d6420;
+    background-color: #1f82be;
   }
   .logo-image {
   width: 90px; /* Ajusta el tamaño de la imagen según sea necesario */
   margin-right: 10px; /* Espacio entre la imagen y el texto */
 }
+.login-link {
+      text-align: center;
+      margin-top: 10px;
+      display: block;
+      color: #1cc0e0;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    
+    .login-link:hover {
+      text-decoration: underline;
+    }
   </style>
   
 {% endblock %}
