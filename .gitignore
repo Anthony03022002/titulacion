@@ -1,3 +1,4 @@
 # Ignorar una carpeta llamada venv
-venv/
+/venv
 settings.py
+    
