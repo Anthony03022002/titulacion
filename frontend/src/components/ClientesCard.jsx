@@ -16,6 +16,8 @@ export const ClientesCard = ({clientes}) => {
           <th scope="col">email</th>
           <th scope="col">direccion</th>
           <th scope="col">Producto</th>
+          <th scope="col">Fecha-inicio</th>
+          <th scope="col">Cantidad</th>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +27,9 @@ export const ClientesCard = ({clientes}) => {
           <td >{clientes.email}</td>
           <td>{clientes.direccion}</td>
           <td>{clientes.nombre_producto}</td>
+          <td>{clientes.fecha_inicio}</td>
+          <td>{clientes.cantidad}</td>
+
         </tr>
       </tbody>
     </table>

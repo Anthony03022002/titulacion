@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 from productos.models import Productos
 
 # Create your models here.
@@ -8,9 +8,13 @@ class Clientes(models.Model):
     nombre_completo = models.CharField(max_length=150)
     email = models.EmailField(max_length=100)
     direccion = models.CharField(max_length=100)
+    fecha_inicio = models.DateTimeField(default=timezone.now)  # Establece el valor predeterminado
+
 
     #ForeignKey
     nombre_producto = models.ForeignKey(Productos,null=True,blank=True,on_delete=models.CASCADE)
+    
+    
 
 
     class Meta:
