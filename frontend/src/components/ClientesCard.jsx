@@ -10,6 +10,7 @@ export const ClientesCard = ({clientes}) => {
       <p>Nombre: {clientes.nombre_completo}</p>
       <p>Email: {clientes.email}</p>
       <p>Dirección: {clientes.direccion}</p>
+      <p>Fecha inicio: {clientes.fecha_inicio}</p>
       <p>Producto: {clientes.nombre_producto}</p>
       <button
           onClick={()=>{

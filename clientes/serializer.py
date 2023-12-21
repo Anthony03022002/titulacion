@@ -4,6 +4,6 @@ from .models import Clientes
 class clientesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Clientes
-        # fields = ('cedula', 'nombre_completo', 'email', 'direccion')
+        # fields = ('cedula', 'nombre_completo', 'email', 'direccion','fecha_inicio')
         fields = '__all__'
       

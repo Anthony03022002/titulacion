@@ -4,6 +4,8 @@ import { useForm } from 'react-hook-form';
 import { createCliente, deleteCliente, updateCliente, getCliente } from '../api/clientes.api';
 import { useNavigate, useParams } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
+import './ClientesForm.css'; // Importa tu archivo CSS
+
 export const ClientesForm = () => {
   const {
     register,
@@ -33,6 +35,7 @@ export const ClientesForm = () => {
       setValue('nombre_completo', data.nombre_completo);
       setValue('email', data.email);
       setValue('direccion', data.direccion);
+      setValue('fecha_inicio', data.fecha_inicio);
       setValue('nombre_producto', data.nombre_producto);
       }
     }
@@ -47,46 +50,66 @@ export const ClientesForm = () => {
   return (
     <div>
       <Breadcrumbs paths={breadcrumbsPaths} />
-      <form onSubmit={onSubmit}>
+      <form className="clientes-form" onSubmit={onSubmit}>
+        <label>Cedula:</label>
         <input
           type="number"
           placeholder="Ingrese su cedula"
           {...register("cedula", { required: true })}
         />
         {errors.cedula && <span>La cedula es requerida</span>}
+
+        <label>Nombre Completo:</label>
         <input
           type="text"
           placeholder="Nombre Completo"
           {...register("nombre_completo", { required: true })}
         />
         {errors.nombre_completo && <span>Este campo es requerido</span>}
+
+        <label>Correo Electrónico:</label>
         <input
           type="email"
           placeholder="Correo electronico"
           {...register("email", { required: true })}
         />
         {errors.email && <span>Este campo es requerido</span>}
+
+        <label>Dirección:</label>
         <input
           type="text"
           placeholder="Direccion"
           {...register("direccion", { required: true })}
         />
         {errors.direccion && <span>Este campo es requerido</span>}
-         <input
+        <label>Fecha de Inicio:</label>
+        <input
+          type="date"
+          placeholder="Fecha-inicio"
+          {...register("fecha_inicio", { required: true })}
+        />  
+        <label>Producto:</label>
+        <input
           type="text"
           placeholder="Produto"
           {...register("nombre_producto", { required: true })}
-        /> 
-        <button>Guardar Cliente</button>
-      </form>
+        />
 
-      {params.cedula && <button onClick={async()=>{
+        
+        {/* Comenta la línea siguiente para ocultar el campo "Cantidad" */}
+        {/* <input type="text" placeholder="Cantidad" {...register("cantidad", { required: true })} />  */}
+
+        <button>Guardar Cliente</button>
+        {params.cedula && <button onClick={async()=>{
         const aceptar = window.confirm('Esta seguro de eliminar')
         if(aceptar){
           await deleteCliente(params.cedula)
           navigate('/clientes')
         }
       }}>Eliminar</button>}
+      </form>
+
+      
 
     </div>
   );
