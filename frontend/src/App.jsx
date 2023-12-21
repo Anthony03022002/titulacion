@@ -11,6 +11,7 @@ const App = () => {
         <Route path="/" element = {<Navigate to = "/clientes"/>} />
         <Route path="/clientes" element= {<Clientespage/>} />
         <Route path="/crear-clientes" element= {<ClientesForm/>} />
+        <Route path="/clientes/:cedula" element= {<ClientesForm/>} />
       </Routes>
     </BrowserRouter>
   );

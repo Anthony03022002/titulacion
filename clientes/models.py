@@ -9,6 +9,7 @@ class Clientes(models.Model):
     email = models.EmailField(max_length=100)
     direccion = models.CharField(max_length=100)
 
+
     #ForeignKey
     nombre_producto = models.ForeignKey(Productos,null=True,blank=True,on_delete=models.CASCADE)
 

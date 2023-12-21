@@ -1,23 +1,43 @@
 // En el archivo ClientesForm.jsx
-
-import React from 'react';
+import { useEffect } from "react";
 import { useForm } from 'react-hook-form';
-import { createCliente } from '../api/clientes.api';
-import { useNavigate } from 'react-router-dom';
+import { createCliente, deleteCliente, updateCliente, getCliente } from '../api/clientes.api';
+import { useNavigate, useParams } from 'react-router-dom';
 import Breadcrumbs from './Breadcrumbs';
 export const ClientesForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setValue
   } = useForm();
 
   const navigate = useNavigate();
+  const params = useParams();
 
   const onSubmit = handleSubmit(async (data) => {
-    await createCliente(data);
+    if(params.cedula){
+      await updateCliente(params.cedula, data)
+    }else{
+      await createCliente(data);
+    }
     navigate('/clientes');
+
   });
+
+  useEffect(()=>{
+    async function loadCliente(){
+      if (params.cedula) {  
+       const { data } = await getCliente(params.cedula);
+      setValue('cedula', data.cedula);
+      setValue('nombre_completo', data.nombre_completo);
+      setValue('email', data.email);
+      setValue('direccion', data.direccion);
+      setValue('nombre_producto', data.nombre_producto);
+      }
+    }
+    loadCliente();
+  },[]);
 
 
 
@@ -59,6 +79,15 @@ export const ClientesForm = () => {
         /> 
         <button>Guardar Cliente</button>
       </form>
+
+      {params.cedula && <button onClick={async()=>{
+        const aceptar = window.confirm('Esta seguro de eliminar')
+        if(aceptar){
+          await deleteCliente(params.cedula)
+          navigate('/clientes')
+        }
+      }}>Eliminar</button>}
+
     </div>
   );
 };

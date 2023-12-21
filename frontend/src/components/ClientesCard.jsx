@@ -1,32 +1,23 @@
+import { useNavigate } from "react-router-dom";
+
 export const ClientesCard = ({clientes}) => {
+
+  const navigate = useNavigate()
+
   return (
-    // <table>
-    //   <thead><th>{clientes.cedula}</th></thead>
-    //   <th>{clientes.nombre_completo}</th>
-    //   <th>{clientes.email}</th>
-    //   <th>{clientes.direccion}</th>
-    //   <th>{clientes.nombre_producto}</th>
-    //   <hr />
-    // </table>
-    <table class ="table table-striped">
-      <thead>
-        <tr>
-          <th scope="col">cedula</th>
-          <th scope="col">nombre_completo</th>
-          <th scope="col">email</th>
-          <th scope="col">direccion</th>
-          <th scope="col">Producto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">{clientes.cedula}</th>
-          <td>{clientes.nombre_completo}</td>
-          <td >{clientes.email}</td>
-          <td>{clientes.direccion}</td>
-          <td>{clientes.nombre_producto}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      <h4>cedula: {clientes.cedula}</h4>
+      <p>Nombre: {clientes.nombre_completo}</p>
+      <p>Email: {clientes.email}</p>
+      <p>Dirección: {clientes.direccion}</p>
+      <p>Producto: {clientes.nombre_producto}</p>
+      <button
+          onClick={()=>{
+            navigate(`/clientes/${clientes.cedula}`)
+          }}
+      >Ver</button>
+      <hr />
+    </div>
   );
 };
+
