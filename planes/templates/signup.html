@@ -5,14 +5,13 @@
   <div class="wrapper">
 
    
-    <form method="POST" class="form">
+    <form method="POST" class="form" >
       <h1 class="title">Registrarse</h1>
       <br>
       {% if error %}
       <p class="error-message">{{ error }}</p>
       {% endif %}
       {% csrf_token %}
-<<<<<<< HEAD
       <div class="inp">
         <input class="input" type="text" name="username" id="username" placeholder="Ingrese su usuario">
         <i style="font-size: 20px;" class="bi bi-person-fill"></i>
@@ -25,14 +24,6 @@
         <input class="input" type="password" name="password2" id="password2" placeholder="Confirme su Contraseña">
         <i style="font-size: 20px;" class="bi bi-shield-lock-fill"></i>
       </div>
-=======
-      {{ form.as_p }} 
-
-      <button type="submit" class="signup-button">Registrar</button>
-
-      <a href="{% url 'iniciarSesion' %}" class="login-link">Regresar al Login</a>
-
->>>>>>> 495ea4bf4aedbea6809bfb1645d462a23a9eafdc
 
       <button type="submit" class="submit">Registrarse</button>
     </form>
