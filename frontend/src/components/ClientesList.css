@@ -1,12 +1,10 @@
-/* En tu archivo ClientesList.css */
 
-.clientes-list {
+  .clientes-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
   }
   
-  /* Estilos adicionales para las tarjetas de clientes (ClientesCard) */
   .clientes-card {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -25,5 +23,4 @@
     color: #555;
   }
   
-  /* Puedes agregar más estilos según tus preferencias */
   
