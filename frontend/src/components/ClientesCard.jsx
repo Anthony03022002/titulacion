@@ -12,11 +12,11 @@ export const ClientesCard = ({clientes}) => {
       <p>Dirección: {clientes.direccion}</p>
       <p>Fecha inicio: {clientes.fecha_inicio}</p>
       <p>Producto: {clientes.nombre_producto}</p>
-      <button
+      <p>Accion: <button
           onClick={()=>{
             navigate(`/clientes/${clientes.cedula}`)
           }}
-      >Ver</button>
+      >Ver</button></p>
       <hr />
     </div>
   );

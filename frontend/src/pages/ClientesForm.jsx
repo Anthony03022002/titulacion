@@ -26,6 +26,13 @@ export const ClientesForm = () => {
     navigate('/clientes');
 
   });
+  const obtenerFechaActual = () => {
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = String(fechaActual.getMonth() + 1).padStart(2, '0');
+    const dia = String(fechaActual.getDate()).padStart(2, '0');
+    return `${año}-${mes}-${dia}`;
+  };
 
   useEffect(()=>{
     async function loadCliente(){
@@ -45,11 +52,13 @@ export const ClientesForm = () => {
 
 
 
-  const breadcrumbsPaths = ['Home', 'Clientes', 'Nuevo Cliente'];
+
+
+  // const breadcrumbsPaths = ['Home', 'Clientes', 'Nuevo Cliente'];
 
   return (
     <div>
-      <Breadcrumbs paths={breadcrumbsPaths} />
+      {/* <Breadcrumbs paths={breadcrumbsPaths} /> */}
       <form className="clientes-form" onSubmit={onSubmit}>
         <label>Cedula:</label>
         <input
@@ -87,17 +96,17 @@ export const ClientesForm = () => {
           type="date"
           placeholder="Fecha-inicio"
           {...register("fecha_inicio", { required: true })}
+          defaultValue={obtenerFechaActual()}
+          readOnly
         />  
         <label>Producto:</label>
         <input
           type="text"
-          placeholder="Produto"
+          placeholder="Producto"
           {...register("nombre_producto", { required: true })}
         />
-
         
-        {/* Comenta la línea siguiente para ocultar el campo "Cantidad" */}
-        {/* <input type="text" placeholder="Cantidad" {...register("cantidad", { required: true })} />  */}
+        
 
         <button>Guardar Cliente</button>
         {params.cedula && <button onClick={async()=>{
