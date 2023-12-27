@@ -7,7 +7,6 @@ export const ProductosCard = ({ productos }) => {
   return (
     <div>
       <p>Producto: {productos.nombre_producto}</p>
-      <p>Cantidad: {productos.cantidad}</p>
       <p>Precio: {productos.precio}</p>
       <p>Meses diferidos: {productos.meses_diferidos}</p>
       <p>Accion<button

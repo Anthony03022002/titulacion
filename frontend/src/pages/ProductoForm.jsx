@@ -33,7 +33,6 @@ export const ProductoForm = () => {
         if (params.nombre_producto) {
            const {data} = await getAllProducto(params.nombre_producto)
            setValue('nombre_producto', data.nombre_producto)
-           setValue('cantidad', data.cantidad)
            setValue('precio', data.precio)
            setValue('meses_diferidos', data.meses_diferidos)
         }
@@ -52,9 +51,6 @@ export const ProductoForm = () => {
           {...register("nombre_producto", { required: true })}
         />
         {errors.nombre_producto && <span>Este campo es requerido</span>}
-        <label htmlFor="">Cantidad</label>
-        <input type="number" {...register("cantidad", { required: true })} />
-        {errors.cantidad && <span>Este campo es requerido</span>}
         <label htmlFor="">Precio</label>
         <input type="number" {...register("precio", { required: true })} />
         {errors.precio && <span>Este campo es requerido</span>}

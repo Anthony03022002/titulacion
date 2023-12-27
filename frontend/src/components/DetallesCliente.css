@@ -1,0 +1,25 @@
+/* DetallesCliente.css */
+
+.detalles-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .detalles-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .detalles-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .detalles-table th {
+    background-color: #4caf50;
+    color: white;
+    padding: 8px;
+    text-align: left;
+  }
+  
