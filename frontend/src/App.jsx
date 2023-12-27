@@ -3,6 +3,8 @@ import { Clientespage } from "./pages/Clientespage";
 import { ClientesForm } from "./pages/ClientesForm";
 import { ProductoPage } from "./pages/ProductoPage";
 import { ProductoForm } from "./pages/ProductoForm";
+import { PagosMensualesPage } from "./pages/PagosMensualesPage";
+import { PagosMensualesForm } from "./pages/PagosMensualesForm";
 import { Navegacion } from "./components/Navegacion"; 
 import {DetallesCliente} from "./components/DetallesCliente"; 
 
@@ -19,6 +21,9 @@ const App = () => {
   <Route path="/productos" element={<ProductoPage />} />
   <Route path="/crear-producto" element={<ProductoForm />} />
   <Route path="/productos/:nombre_producto" element={<ProductoForm />} />
+  <Route path="/pagosMensuales" element={<PagosMensualesPage />} />
+  <Route path="/crear-pagos" element={<PagosMensualesForm />} />
+
 </Routes>
 
     </BrowserRouter>
