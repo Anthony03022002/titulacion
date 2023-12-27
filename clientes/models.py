@@ -6,7 +6,7 @@ from productos.models import Productos
 
 # Create your models here.
 class Clientes(models.Model):
-    cedula = models.IntegerField(primary_key=True)
+    cedula = models.BigIntegerField(primary_key=True)
     nombre_completo = models.CharField(max_length=150)
     email = models.EmailField(max_length=100)
     direccion = models.CharField(max_length=100)
