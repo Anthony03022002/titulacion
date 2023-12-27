@@ -8,7 +8,6 @@ export const ProductosCard = ({ productos }) => {
     <div>
       <p>Producto: {productos.nombre_producto}</p>
       <p>Precio: {productos.precio}</p>
-      <p>Meses diferidos: {productos.meses_diferidos}</p>
       <p>Accion<button
         onClick={()=>{
           navigate(`/productos/${productos.nombre_producto}`)

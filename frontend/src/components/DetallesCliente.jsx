@@ -49,6 +49,14 @@ import "./DetallesCliente.css"; // Importa tus estilos CSS aquí
                 <td>Pagos Mensuales:</td>
                 <td>{clientesdet.pagos_mensuales}</td>
               </tr>
+              <tr>
+                <td>Meses diferidos:</td>
+                <td>{clientesdet.meses_diferidos}</td>
+              </tr>
+              <tr>
+                <td>Total a Pagar:</td>
+                <td>{clientesdet.total_pagar}</td>
+              </tr>
             {/* Agrega más detalles según sea necesario */}
           </tbody>
         </table>

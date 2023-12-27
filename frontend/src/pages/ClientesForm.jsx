@@ -45,6 +45,8 @@ export const ClientesForm = () => {
       setValue('nombre_producto', data.nombre_producto);
       setValue('cantidad_producto', data.cantidad_producto);
       setValue('pagos_mensuales', data.pagos_mensuales);
+      setValue('meses_diferidos', data.meses_diferidos);
+      setValue('total_pagar', data.total_pagar);
       }
     }
     loadCliente();
@@ -121,6 +123,20 @@ export const ClientesForm = () => {
           {...register("pagos_mensuales", { required: true })}
         />
         {errors.nombre_completo && <span>Este campo es requerido</span>}
+        <label>Meses Diferidos:</label>
+        <input
+          type="number"
+          placeholder="Meses Diferidos"
+          {...register("meses_diferidos", { required: true })}
+        />
+        {errors.nombre_completo && <span>Este campo es requerido</span>}
+        {/* <label>Total a Pagar:</label>
+        <input
+          type="number"
+          placeholder="Total a Pagar"
+          {...register("total_pagar", { required: true })}
+        />
+        {errors.nombre_completo && <span>Este campo es requerido</span>} */}
 
         <button>Guardar Cliente</button>
         {params.cedula && <button onClick={async()=>{

@@ -21,6 +21,8 @@ export const ClientesCard = ({ clientes }) => {
       <p>Producto: {clientes.nombre_producto}</p>
       <p>cantidad del producto: {clientes.cantidad_producto}</p>
       <p>pagos mensuales: {clientes.pagos_mensuales}</p>
+      <p>meses diferidos: {clientes.meses_diferidos}</p>
+      {/* <p>total a pagar: {clientes.total_pagar}</p> */}
       <p>
         
         <button onClick={verDetalles}>
