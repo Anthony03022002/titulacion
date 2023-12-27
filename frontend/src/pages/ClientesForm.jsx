@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useForm } from 'react-hook-form';
 import { createCliente, deleteCliente, updateCliente, getCliente } from '../api/clientes.api';
 import { useNavigate, useParams } from 'react-router-dom';
-import Breadcrumbs from './Breadcrumbs';
 import './ClientesForm.css'; // Importa tu archivo CSS
 
 export const ClientesForm = () => {
@@ -44,6 +43,8 @@ export const ClientesForm = () => {
       setValue('direccion', data.direccion);
       setValue('fecha_inicio', data.fecha_inicio);
       setValue('nombre_producto', data.nombre_producto);
+      setValue('cantidad_producto', data.cantidad_producto);
+      setValue('pagos_mensuales', data.pagos_mensuales);
       }
     }
     loadCliente();
@@ -113,7 +114,13 @@ export const ClientesForm = () => {
         />
         {errors.nombre_completo && <span>Este campo es requerido</span>}
         
-        
+        <label>Pagos Mensuales:</label>
+        <input
+          type="number"
+          placeholder="Pagos Mensuales"
+          {...register("pagos_mensuales", { required: true })}
+        />
+        {errors.nombre_completo && <span>Este campo es requerido</span>}
 
         <button>Guardar Cliente</button>
         {params.cedula && <button onClick={async()=>{
