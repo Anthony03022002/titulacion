@@ -6,20 +6,26 @@ export const ClientesCard = ({ clientes }) => {
 
 
   return (
-    <div className="table-responsive">
-      <table className="table table-bordered">
-      <thead>
-          <tr>
-            <th>Cedula</th>
-            <th>Nombre Completo</th>
-            <th>Correo Electronico</th>
-            <th>Direccion</th>
-            <th>Fecha Inicio</th>
-            <th>Producto</th>
-            <th>Cantidad del Producto</th>
-          </tr>
-        </thead>
-      </table>
+    <div>
+      <p>Nombre: {clientes.nombre_completo}</p>
+      <p>Email: {clientes.email}</p>
+      <p>Dirección: {clientes.direccion}</p>
+      <p>Fecha inicio: {clientes.fecha_inicio}</p>
+      <p>Producto: {clientes.nombre_producto}</p>
+      <p>cantidad del producto: {clientes.cantidad_producto}</p>
+      <p>pagos mensuales: {clientes.pagos_mensuales}</p>
+      <p>
+        
+        <button onClick={verDetalles}>
+          Ver Detalles
+        </button>
+      </p>
+      <p> <button
+          onClick={()=>{
+            navigate(`/clientes/${clientes.cedula}`)
+          }}
+      >editar</button></p>
+      <hr />
     </div>
   );
 };

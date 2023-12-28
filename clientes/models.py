@@ -9,7 +9,7 @@ class Clientes(models.Model):
     email = models.EmailField(max_length=100)
     direccion = models.CharField(max_length=100)
     fecha_inicio = models.DateField(null=True, blank=True, auto_now_add=True)
-    cantidad_producto = models.IntegerField()
+    cantidad_producto = models.IntegerField() 
 
     # ForeignKey
     nombre_producto = models.ForeignKey(Productos, null=True, blank=True, on_delete=models.SET_NULL)
