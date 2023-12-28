@@ -4,12 +4,6 @@ import { useNavigate } from "react-router-dom";
 export const ClientesCard = ({ clientes }) => {
   const navigate = useNavigate();
 
-  const verDetalles = () => {
-    // Navegar a la nueva ruta con el cédula del cliente
-    navigate(`/clientes/${clientes.cedula}/detalles`, {
-      state: { clienteDetalles: clientes },
-    });
-  };
 
   return (
     <div className="table-responsive">
