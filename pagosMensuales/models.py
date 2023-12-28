@@ -15,11 +15,11 @@ class pagosMensuales(models.Model):
     vencimiento = models.DateField()
     estado = models.CharField(max_length=20,choices=opciones_estado, default='opcion2')
     total_cobrar = models.DecimalField(max_digits=20, decimal_places=2)
-    fecha_inicio = models.DateTimeField(auto_now_add = True)
+    fecha_inicio = models.DateField(null=True, blank=True, auto_now_add=True)
 
 
     #ForeingKey
-    nombre_completo = models.ForeignKey(Clientes, null=True, blank=True, on_delete=models.CASCADE)
+    cedula = models.ForeignKey(Clientes, null=True, blank=True, on_delete=models.CASCADE)
     planes = models.ForeignKey(Planes, null=True, blank=True, on_delete=models.CASCADE)
     User = models.ForeignKey(User,null=True, blank=True,on_delete=models.CASCADE)
 
