@@ -1,5 +1,4 @@
 from django.db import models
-from crearPagos.models import Crear_Pagos
 from planes.models import Planes
 from productos.models import Productos
 
@@ -10,8 +9,12 @@ class Clientes(models.Model):
     direccion = models.CharField(max_length=100)
     fecha_inicio = models.DateField(null=True, blank=True, auto_now_add=True)
     cantidad_producto = models.IntegerField()
-    total_pagar = models.DecimalField(max_digits=50,decimal_places=2,primary_key=True)
-    pagos_mensuales = models.DecimalField(max_digits=50,decimal_places=2,primary_key=True)
+    total_pagar = models.DecimalField(max_digits=50,decimal_places=2)
+    pagos_mensuales = models.DecimalField(max_digits=50,decimal_places=2)
+    vencimiento = models.DateField(null=True, blank=True, auto_now_add=True)
+    estado = models.CharField(max_length=100)
+    
+    
 
     # ForeignKey
     nombre_producto = models.ForeignKey(Productos, null=True, blank=True, on_delete=models.SET_NULL)

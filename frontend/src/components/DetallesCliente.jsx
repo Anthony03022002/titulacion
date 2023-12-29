@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import "./DetallesCliente.css"; // Importa tus estilos CSS aquí
 
- export const DetallesCliente = () => {
+export const DetallesCliente = () => {
   const location = useLocation();
   const clientesdet = location.state?.clienteDetalles;
 
@@ -10,59 +10,32 @@ import "./DetallesCliente.css"; // Importa tus estilos CSS aquí
     return <div>No hay detalles del cliente disponibles.</div>;
   }
 
-  
+  return (
+    <div className="container">
+      <h1 style={{ textAlign: "center" }}>Pagos Mensuales</h1>
+      <h2>Cliente: {clientesdet.nombre_completo.toUpperCase()}</h2>
+      <p>Cedula: {clientesdet.cedula}</p>
+      <p>Producto: {clientesdet.nombre_producto.toUpperCase()}</p>
+      <p>Pagos Mensuales: {clientesdet.pagos_mensuales}</p>
 
-    return (
-      <div>
-         <h2>Detalles del Cliente</h2>
-          <table className="detalles-table">
-            <tbody>
-              <tr>
-                <td>Cédula:</td>
-                <td>{clientesdet.cedula}</td>
-              </tr>
-              <tr>
-                <td>Nombre Completo:</td>
-                <td>{clientesdet.nombre_completo}</td>
-              </tr>
-              <tr>
-                <td>Email:</td>
-                <td>{clientesdet.email}</td>
-              </tr>
-              <tr>
-                <td>Direccion:</td>
-                <td>{clientesdet.direccion}</td>
-              </tr>
-              <tr>
-                <td>Fecha Inicio:</td>
-                <td>{clientesdet.fecha_inicio}</td>
-              </tr>
-              <tr>
-                <td>Producto:</td>
-                <td>{clientesdet.nombre_producto}</td>
-              </tr>
-              <tr>
-                <td>Cantidad del Producto:</td>
-                <td>{clientesdet.cantidad_producto}</td>
-              </tr>
-              <tr>
-                <td>Pagos Mensuales:</td>
-                <td>{clientesdet.pagos_mensuales}</td>
-              </tr>
-              <tr>
-                <td>Meses diferidos:</td>
-                <td>{clientesdet.meses_diferidos}</td>
-              </tr>
-              <tr>
-                <td>Total a Pagar:</td>
-                <td>{clientesdet.total_pagar}</td>
-              </tr>
-            {/* Agrega más detalles según sea necesario */}
-          </tbody>
-        </table>
-      </div>
-    );
-  };
-  
-  
-  
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Cedula</th>
+            <th scope="col">Pagos Mensuales</th>
+            <th scope="col">Accion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td scope="row">{clientesdet.cedula}</td>
+            <td>{clientesdet.pagos_mensuales}</td>
+            <td>
+              <button>Generar Pago</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+};

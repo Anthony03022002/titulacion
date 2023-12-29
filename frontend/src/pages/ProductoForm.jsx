@@ -34,7 +34,6 @@ export const ProductoForm = () => {
            const {data} = await getAllProducto(params.nombre_producto)
            setValue('nombre_producto', data.nombre_producto)
            setValue('precio', data.precio)
-           setValue('meses_diferidos', data.meses_diferidos)
         }
     }
     loadProducto();

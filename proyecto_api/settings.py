@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'coreapi',
     'corsheaders',
     'clientes',
-    'pagosMensuales',
     'planes',
     'productos',
 ]

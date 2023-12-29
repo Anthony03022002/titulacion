@@ -23,8 +23,6 @@ from planes import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('clientes.urls')),
-    path('', include('crearPagos.urls')),
-    path('', include('pagosMensuales.urls')),
     path('', include('planes.urls')),
     path('', include('productos.urls')),
      path('', views.iniciarSesion, name='iniciarsesion'),
@@ -32,6 +30,5 @@ urlpatterns = [
     path('pagos/', views.pagos, name='pagos'),
     path('cerrarSesion/', views.cerrarSesion, name='cerrarSesion'),
     path('iniciarSesion/', views.iniciarSesion, name='iniciarSesion'),
-    path('crear/pago/', views.crearPago, name='crearPago'),
     # path('', ReactView.as_view(), name='anything'),
 ]

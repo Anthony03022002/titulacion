@@ -13,3 +13,5 @@ export const createCliente = (clientes) => clienteApi.post('/', clientes);
 export const deleteCliente = (cedula) => clienteApi.delete(`/${cedula}`)
 
 export const updateCliente= (cedula, clientes) => clienteApi.put(`/${cedula}/`, clientes)
+
+export const cancelarPagoCliente = (cedula, tipoPago) => clienteApi.post('/cancelar-pago', { cedula, tipoPago });
