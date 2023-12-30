@@ -1,4 +1,3 @@
-import React from "react";
 import { useLocation } from "react-router-dom";
 
 export const DetallesCliente = () => {
@@ -17,7 +16,7 @@ export const DetallesCliente = () => {
       <p>Producto: {clientesdet.nombre_producto.toUpperCase()}</p>
       <p>Pagos Mensuales: {clientesdet.pagos_mensuales}</p>
 
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">Cedula</th>

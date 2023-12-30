@@ -1,19 +1,20 @@
-import React from "react";
 
 export const GenerarPago = () => {
  
   return (
-    <div>
-      <div class="mb-3 row">
-    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-    <div class="col-sm-10">
-      <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com"/>
+    <div className="container">
+         <h2>Generar Pago</h2>
+      <div className="row g-3 align-items-center">
+      <label className="col-sm-2 col-form-label">Producto:</label>
+      <div className="col-sm-10">
+      <input type="text" readOnly className="form-control" id="staticEmail" value="email@example.com"/>
     </div>
   </div>
-  <div class="mb-3 row">
-    <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-    <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword"/>
+
+  <div className="row g-3 align-items-center">
+    <label htmlFor="inputPassword" className="col-sm-2 col-form-label">Password</label>
+    <div className="col-sm-10">
+      <input type="password" className="form-control" id="inputPassword"/>
     </div>
   </div>
     </div>

@@ -13,9 +13,10 @@ export const ClientesList = () => {
     }
     cargarClientes();
   }, []);
-
+  
   return (
     <div className="container">
+     <h1>Clientes</h1>
       <table className="table">
         <thead>
           <tr>
@@ -27,7 +28,8 @@ export const ClientesList = () => {
             <th scope="col">Total a Pagar</th>
             <th scope="col">Pagos Mensuales</th>
             <th scope="col">Vencimiento</th>
-            <th scope="col">Accion</th>
+            <th scope="col">Acciones</th>
+
           </tr>
         </thead>
         <tbody>
@@ -42,11 +44,11 @@ export const ClientesList = () => {
               <td>{clientes.pagos_mensuales}</td>
               <td>{clientes.vencimiento}</td>
               <td>
-              <button className="btn btn-info">
-                      <Link to={`/clientes/${clientes.cedula}/pagosMensuales`}>
-                  <i className="bi bi-file-earmark-person-fill"></i>
+                <button className="btn btn-info">
+                  <Link to={`/clientes/${clientes.cedula}/pagosMensuales`}>
+                    <i className="bi bi-file-earmark-person-fill"></i>
                   </Link>
-               </button>
+                </button>
                 <button
                   className="btn btn-warning"
                   onClick={() => navigate(`/clientes/${clientes.cedula}`)}

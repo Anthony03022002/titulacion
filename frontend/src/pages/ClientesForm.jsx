@@ -16,7 +16,6 @@ export const ClientesForm = () => {
     handleSubmit,
     formState: { errors },
     setValue,
-    location, // Agrega location para acceder al estado de ubicación
   } = useForm();
 
   const [productos, setProductos] = useState([]);
@@ -108,12 +107,11 @@ export const ClientesForm = () => {
     setValue("total", total || "");
     setValue("pagos_mensuales", pagosMensuales || "");
   }, [cantidad, precioSeleccionado, setValue, mesesDiferidos]);
-
   return (
-    <div className="container">
+    <div className="container"> 
       <form onSubmit={onSubmit} className="row g-3">
         <div className="col-md-6">
-          <label for="inputEmail4" class="form-label">
+          <label htmlFor="inputEmail4" className="form-label">
             Cedula
           </label>
           <input
@@ -125,7 +123,17 @@ export const ClientesForm = () => {
           {errors.cedula && <span>La cedula es requerida</span>}
         </div>
         <div className="col-md-6">
-          <label for="inputEmail4" class="form-label">
+          <label className="form-label">Precio del Producto</label>
+          <input
+            className="form-control"
+            type="number"
+            {...register("total_pagar", { required: true })}
+            readOnly
+            value={precioSeleccionado || ""}
+          />
+        </div>
+        <div className="col-md-6">
+          <label htmlFor="inputEmail4" className="form-label">
             Nombre Completo
           </label>
           <input
@@ -134,10 +142,25 @@ export const ClientesForm = () => {
             placeholder="Nombre Completo"
             {...register("nombre_completo", { required: true })}
           />
-          {errors.nombre_completo && <span>Este campo es requerido</span>}
         </div>
         <div className="col-md-6">
-          <label for="inputEmail4" class="form-label">
+          <label className="form-label">Meses Diferidos:</label>
+          <select
+            className="form-select"
+            {...register("meses_diferidos", { required: true })}
+            value={mesesDiferidos}
+            onChange={(e) => setMesesDiferidos(parseInt(e.target.value, 10))}
+          >
+            {[8, 12, 24, 32].map((meses) => (
+              <option key={meses} value={meses}>
+                {`${meses} meses`}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.meses_diferidos && <span>Este campo es requerido</span>}
+        <div className="col-md-6">
+          <label htmlFor="inputEmail4" className="form-label">
             Correo Electronico
           </label>
           <input
@@ -149,7 +172,17 @@ export const ClientesForm = () => {
           {errors.email && <span>Este campo es requerido</span>}
         </div>
         <div className="col-md-6">
-          <label for="inputEmail4" class="form-label">
+          <label className="form-label">Total a pagar</label>
+          <input
+            className="form-control"
+            type="number"
+            {...register("total", { required: true })}
+            readOnly
+            value={cantidad * precioSeleccionado || ""}
+          />
+        </div>
+        <div className="col-md-6">
+          <label htmlFor="inputEmail4" className="form-label">
             Direccion
           </label>
           <input
@@ -159,17 +192,14 @@ export const ClientesForm = () => {
             {...register("direccion", { required: true })}
           />
         </div>
-        {errors.direccion && <span>Este campo es requerido</span>}
         <div className="col-md-6">
-          <label for="inputEmail4" class="form-label">
-            Fecha de Inicio:
-          </label>
+          <label className="form-label">Pagos Mensuales:</label>
           <input
-            type="date"
             className="form-control"
-            placeholder="Fecha de Inicio:"
-            {...register("fecha_inicio", { required: true })}
-            defaultValue={obtenerFechaActual()}
+            type="number"
+            placeholder="Pagos Mensuales"
+            {...register("pagos_mensuales", { required: true })}
+            value={pagosMensuales.toFixed(2)}
             readOnly
           />
         </div>
@@ -192,16 +222,21 @@ export const ClientesForm = () => {
           </select>
           {errors.nombre_producto && <span>Este campo es requerido</span>}
         </div>
+
         <div className="col-md-6">
-          <label className="form-label">Precio del Producto</label>
+          <label htmlFor="inputEmail4" className="form-label">
+            Fecha de Inicio:
+          </label>
           <input
+            type="date"
             className="form-control"
-            type="number"
-            {...register("total_pagar", { required: true })}
+            placeholder="Fecha de Inicio:"
+            {...register("fecha_inicio", { required: true })}
+            defaultValue={obtenerFechaActual()}
             readOnly
-            value={precioSeleccionado || ""}
           />
         </div>
+
         <div className="col-md-6">
           <label className="form-label">Cantidad del Producto:</label>
           <input
@@ -211,43 +246,6 @@ export const ClientesForm = () => {
             onChange={handleCantidadChange}
           />
         </div>
-        <div className="col-md-6">
-          <label className="form-label">Total a pagar</label>
-          <input
-            className="form-control"
-            type="number"
-            {...register("total", { required: true })}
-            readOnly
-            value={cantidad * precioSeleccionado || ""}
-          />
-        </div>
-        <div className="col-md-6">
-          <label className="form-label">Pagos Mensuales:</label>
-          <input
-            className="form-control"
-            type="number"
-            placeholder="Pagos Mensuales"
-            {...register("pagos_mensuales", { required: true })}
-            value={pagosMensuales.toFixed(2)}
-            readOnly
-          />
-        </div>
-        <div className="col-md-6">
-          <label className="form-label">Meses Diferidos:</label>
-          <select
-            className="form-select"
-            {...register("meses_diferidos", { required: true })}
-            value={mesesDiferidos}
-            onChange={(e) => setMesesDiferidos(parseInt(e.target.value, 10))}
-          >
-            {[8, 12, 24, 32].map((meses) => (
-              <option key={meses} value={meses}>
-                {`${meses} meses`}
-              </option>
-            ))}
-          </select>
-        </div>
-        {errors.meses_diferidos && <span>Este campo es requerido</span>}
         <div className="col-md-6">
           <label className="form-label">Vencimiento</label>
           <input
@@ -265,22 +263,25 @@ export const ClientesForm = () => {
             <option value="cancelado">Cancelado</option>
           </select>
           {errors.estado_pago && <span>Este campo es requerido</span>}
-        </div>
-        <button className="btn btn-success">Guardar Cliente</button>
-        {params.cedula && (
-          <button
-            className="btn btn-danger"
-            onClick={async () => {
-              const aceptar = window.confirm("Esta seguro de eliminar");
-              if (aceptar) {
-                await deleteCliente(params.cedula);
-                navigate("/clientes");
-              }
-            }}
-          >
-            <i className="bi bi-trash"></i>
+          <button className="btn btn-success float-end" style={{ position: 'absolute', right: '250px', }}>
+            Guardar Cliente
           </button>
-        )}
+          {params.cedula && (
+            <button
+              className="btn btn-danger" style={{ position: 'absolute', right: '200px', }}
+              onClick={async () => {
+                const aceptar = window.confirm("Esta seguro de eliminar");
+                if (aceptar) {
+                  await deleteCliente(params.cedula);
+                  navigate("/clientes");
+                }
+              }}
+            >
+              <i className="bi bi-trash"></i>
+            </button>
+          )}
+        </div>
+
       </form>
     </div>
   );
