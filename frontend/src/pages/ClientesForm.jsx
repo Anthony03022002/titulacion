@@ -9,7 +9,6 @@ import {
 } from "../api/clientes.api";
 import { getAllProductos } from "../api/productos.api";
 import { useNavigate, useParams } from "react-router-dom";
-import "./ClientesForm.css"; // Importa tu archivo CSS
 
 export const ClientesForm = () => {
   const {
@@ -30,20 +29,19 @@ export const ClientesForm = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     // Calcula total y pagos_mensuales aquí antes de enviar los datos
-  const total = cantidad * precioSeleccionado;
-  const pagosMensuales = total / mesesDiferidos;
+    const total = cantidad * precioSeleccionado;
+    const pagosMensuales = total / mesesDiferidos;
 
-  // Asigna los valores calculados a los datos antes de enviarlos
-  data.total_pagar = total;
-  data.pagos_mensuales = pagosMensuales;
+    // Asigna los valores calculados a los datos antes de enviarlos
+    data.total_pagar = total;
+    data.pagos_mensuales = pagosMensuales;
 
-  if (params.cedula) {
-    await updateCliente(params.cedula, data);
-  } else {
-    await createCliente(data);
-  }
-  navigate("/clientes");
-
+    if (params.cedula) {
+      await updateCliente(params.cedula, data);
+    } else {
+      await createCliente(data);
+    }
+    navigate("/clientes");
   });
   const obtenerFechaActual = () => {
     const fechaActual = new Date();
@@ -67,10 +65,7 @@ export const ClientesForm = () => {
         setValue("total_pagar", data.total_pagar);
         setValue("pagos_mensuales", data.pagos_mensuales);
         setValue("vencimiento", data.vencimiento);
-        setValue("estado", data.estado);
-        
       }
-      
     }
     loadCliente();
   }, [params.cedula, setValue]);
@@ -106,148 +101,172 @@ export const ClientesForm = () => {
   };
   useEffect(() => {
     const total = cantidad * precioSeleccionado;
-  
+
     const pagosMensuales = total / mesesDiferidos;
     setPagosMensuales(pagosMensuales);
-  
+
     setValue("total", total || "");
     setValue("pagos_mensuales", pagosMensuales || "");
   }, [cantidad, precioSeleccionado, setValue, mesesDiferidos]);
-  
 
   return (
-    <div>
-      <form className="clientes-form" onSubmit={onSubmit}>
-        <label>Cedula:</label>
-        <input
-          type="number"
-          placeholder="Ingrese su cedula"
-          {...register("cedula", { required: true })}
-        />
-        {errors.cedula && <span>La cedula es requerida</span>}
-        <label>Nombre Completo:</label>
-        <input
-          type="text"
-          placeholder="Nombre Completo"
-          {...register("nombre_completo", { required: true })}
-        />
-        {errors.nombre_completo && <span>Este campo es requerido</span>}
-
-        <label>Correo Electrónico:</label>
-        <input
-          type="email"
-          placeholder="Correo electronico"
-          {...register("email", { required: true })}
-        />
-        {errors.email && <span>Este campo es requerido</span>}
-
-        <label>Dirección:</label>
-        <input
-          type="text"
-          placeholder="Direccion"
-          {...register("direccion", { required: true })}
-        />
+    <div className="container">
+      <form onSubmit={onSubmit} className="row g-3">
+        <div className="col-md-6">
+          <label for="inputEmail4" class="form-label">
+            Cedula
+          </label>
+          <input
+            type="number"
+            className="form-control"
+            placeholder="Ingrese su cedula"
+            {...register("cedula", { required: true })}
+          />
+          {errors.cedula && <span>La cedula es requerida</span>}
+        </div>
+        <div className="col-md-6">
+          <label for="inputEmail4" class="form-label">
+            Nombre Completo
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Nombre Completo"
+            {...register("nombre_completo", { required: true })}
+          />
+          {errors.nombre_completo && <span>Este campo es requerido</span>}
+        </div>
+        <div className="col-md-6">
+          <label for="inputEmail4" class="form-label">
+            Correo Electronico
+          </label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Correo Electronico"
+            {...register("email", { required: true })}
+          />
+          {errors.email && <span>Este campo es requerido</span>}
+        </div>
+        <div className="col-md-6">
+          <label for="inputEmail4" class="form-label">
+            Direccion
+          </label>
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Direccion"
+            {...register("direccion", { required: true })}
+          />
+        </div>
         {errors.direccion && <span>Este campo es requerido</span>}
-        <label>Fecha de Inicio:</label>
-        <input
-          type="date"
-          placeholder="Fecha-inicio"
-          {...register("fecha_inicio", { required: true })}
-          defaultValue={obtenerFechaActual()}
-          readOnly
-        />
-        <label>Producto:</label>
-        <select
-          {...register("nombre_producto", { required: true })}
-          onChange={handleProductoChange}
-        >
-          <option value="">Seleccione un producto</option>
-          {productos.map((producto) => (
-            <option
-              key={producto.nombre_producto}
-              value={producto.nombre_producto}
-            >
-              {producto.nombre_producto}
-            </option>
-          ))}
-        </select>
-        {errors.nombre_producto && <span>Este campo es requerido</span>}
-        <br />
-        <label>Precio Producto</label>
-        <input
-          type="text"
-          {...register("total_pagar", { required: true })}
-          readOnly
-          value={precioSeleccionado || ""}
-        />
-        {errors.total && <span>Este campo es requerido</span>}
-        <label>Cantidad del Producto:</label>
-        <input
-          type="number"
-          {...register("cantidad_producto", { required: true })}
-          onChange={handleCantidadChange}
-        />
-        {errors.cantidad_producto && <span>Este campo es requerido</span>}
-        <label>Total a Pagar</label>
-         <input
-          type="text"
-          {...register("total", { required: true })}
-         readOnly
-          value={cantidad * precioSeleccionado || ""}
-         />
-        {errors.precio && <span>Este campo es requerido</span>}
-        <br />
-        <br />
-        
-       
-        <label>Pagos Mensuales:</label>
-        <input
-          type="number"
-          placeholder="Pagos Mensuales"
-          {...register("pagos_mensuales", { required: true })}
-          value={pagosMensuales}
-          readOnly
-        />
-        {errors.nombre_completo && <span>Este campo es requerido</span>}
-        <label>Meses Diferidos:</label>
-<select {...register("meses_diferidos", { required: true })} value={mesesDiferidos} onChange={(e) => setMesesDiferidos(parseInt(e.target.value, 10))}>
-  {[8, 12, 24, 32].map((meses) => (
-    <option key={meses} value={meses}>
-      {`${meses} meses`}
-    </option>
-  ))}
-</select>
-{errors.meses_diferidos && <span>Este campo es requerido</span>}
-
-
-        {/* <label>Meses diferidos:</label>
-        <select {...register("meses_diferidos", { required: true })}>
-          <option value="8">8 meses</option>
-          <option value="12">12 meses</option>
-          <option value="24">24 meses</option>
-          <option value="36">36 meses</option>
-        </select>
-        {errors.meses_diferidos && <span>Este campo es requerido</span>} */}
-
-        <br></br>
-
-        <label>Vencimiento</label>
-        <input
-          type="date"
-          placeholder="Vencimiento"
-          {...register("vencimiento", { required: true })}
-        />
-        {errors.nombre_completo && <span>Este campo es requerido</span>}
-
-        <label>Estado</label>
-        <input
-          type="text"
-          placeholder="Estado"
-          {...register("estado", { required: true })}
-        />
-        {errors.nombre_completo && <span>Este campo es requerido</span>}
-        <br />
-        <button>Guardar Cliente</button>
+        <div className="col-md-6">
+          <label for="inputEmail4" class="form-label">
+            Fecha de Inicio:
+          </label>
+          <input
+            type="date"
+            className="form-control"
+            placeholder="Fecha de Inicio:"
+            {...register("fecha_inicio", { required: true })}
+            defaultValue={obtenerFechaActual()}
+            readOnly
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Producto:</label>
+          <select
+            className="form-select"
+            {...register("nombre_producto", { required: true })}
+            onChange={handleProductoChange}
+          >
+            <option value="">Seleccione un producto</option>
+            {productos.map((producto) => (
+              <option
+                key={producto.nombre_producto}
+                value={producto.nombre_producto}
+              >
+                {producto.nombre_producto}
+              </option>
+            ))}
+          </select>
+          {errors.nombre_producto && <span>Este campo es requerido</span>}
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Precio del Producto</label>
+          <input
+            className="form-control"
+            type="number"
+            {...register("total_pagar", { required: true })}
+            readOnly
+            value={precioSeleccionado || ""}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Cantidad del Producto:</label>
+          <input
+            className="form-control"
+            type="number"
+            {...register("cantidad_producto", { required: true })}
+            onChange={handleCantidadChange}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Total a pagar</label>
+          <input
+            className="form-control"
+            type="number"
+            {...register("total", { required: true })}
+            readOnly
+            value={cantidad * precioSeleccionado || ""}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Pagos Mensuales:</label>
+          <input
+            className="form-control"
+            type="number"
+            placeholder="Pagos Mensuales"
+            {...register("pagos_mensuales", { required: true })}
+            value={pagosMensuales.toFixed(2)}
+            readOnly
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Meses Diferidos:</label>
+          <select
+            className="form-select"
+            {...register("meses_diferidos", { required: true })}
+            value={mesesDiferidos}
+            onChange={(e) => setMesesDiferidos(parseInt(e.target.value, 10))}
+          >
+            {[8, 12, 24, 32].map((meses) => (
+              <option key={meses} value={meses}>
+                {`${meses} meses`}
+              </option>
+            ))}
+          </select>
+        </div>
+        {errors.meses_diferidos && <span>Este campo es requerido</span>}
+        <div className="col-md-6">
+          <label className="form-label">Vencimiento</label>
+          <input
+            className="form-control"
+            type="date"
+            placeholder="Vencimiento"
+            {...register("vencimiento", { required: true })}
+          />
+        </div>
+        <div className="col-md-6">
+          <label className="form-label">Estado del Pago:</label>
+          <select className="form-select" {...register("estado", { required: true })}>
+            <option value="">Selecciona el Estado del Pago</option>
+            <option value="pagado">Por pagar</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          {errors.estado_pago && <span>Este campo es requerido</span>}
+        </div>
+        <button className="btn btn-success">Guardar Cliente</button>
         {params.cedula && (
           <button
             className="btn btn-danger"
@@ -263,23 +282,6 @@ export const ClientesForm = () => {
           </button>
         )}
       </form>
-      <div className="container">
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">Productos en stock</th>
-            </tr>
-          </thead>
-          <tbody>
-            {productos.map((producto) => (
-              <tr key={producto.nombre_producto}>
-                <td>{producto.nombre_producto}</td>
-                <td>{producto.precio}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
     </div>
   );
 };

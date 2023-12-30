@@ -1,6 +1,5 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import "./DetallesCliente.css"; // Importa tus estilos CSS aquí
 
 export const DetallesCliente = () => {
   const location = useLocation();
@@ -36,6 +35,7 @@ export const DetallesCliente = () => {
           </tr>
         </tbody>
       </table>
+     
     </div>
   );
 };
