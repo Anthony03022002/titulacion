@@ -34,7 +34,7 @@ def signup(request):
                                                 password=request.POST['password1'])
                 user.save()
                 login(request, user)
-                return redirect('pagos')
+                return redirect('http://localhost:5173/')
             except IntegrityError:
                 return render(request, 'signup.html', {
                     'form': UserCreationForm,

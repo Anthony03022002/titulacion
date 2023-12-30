@@ -1,117 +1,146 @@
-
 {% extends 'base.html' %}
 
 {% block content %}
   <div class="login-container">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeBtwpi10Pn36gszpF7kbu_Z_nubUe9pZuwA&usqp=CAU" alt="Logo" class="logo-image">
-    <h1>Login</h1>
+    <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeBtwpi10Pn36gszpF7kbu_Z_nubUe9pZuwA&usqp=CAU" alt="Logo" class="logo-image"> -->
 
+    
+
+   <div class="wrapper">
+    <form action="" method="POST" class="form">
+    <h1 class="title">Login</h1>
+    <br>
     {% if error %}
       <p class="error-message">{{ error }}</p>
     {% endif %}
-
-    <form action="" method="POST" class="login-form">
       {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit" class="login-button">Ingresar</button>
-      
-      <a class="registro-link" href="/signup">no tienes cuenta registrate</a>
-
+      <div class="inp">
+        <input class="input" type="text" name="username" placeholder="Ingrese su Usuario">
+        <i style="font-size: 20px;" class="bi bi-person-fill"></i>
+      </div>
+      <div class="inp">
+        <input class="input" type="password" name="password"  placeholder="Ingrese su Contraseña">
+        <i style="font-size: 20px;" class="bi bi-key-fill"></i>
+      </div>
+      <button type="submit" class="submit">Ingresar</button>
+      <p class="footer">¿No tienes cuenta?</p><a class="link" href="/signup">Por favor, Registrate</a>
     </form>
+    <div class="banner">
+      <h1 class="wel_text">Bienvenido</h1>
+    </div>
+   </div>
     
   </div>
   <style>
-    body {
-  font-family: 'Arial', sans-serif;
-  background-color: #f4f4f4;
-  margin: 0;
-  padding: 0;
-}
+    *{
+      margin: 0;
+      padding: 0;
+      font-family: arial;
+      color: #fff;
+    }
+    body{
+      width: 100vw;
+      height: 100vh;
+      background: #081b29;
+      display: grid;
+      justify-content: center;
+      align-content: center;
+    }
+    ::-webkit-input-placeholder{
+      color: #eee;
+    }
+    .wrapper{
+      position: relative;
+      width: 800px;
+      height: 65vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 3px solid #00ffff;
+      box-shadow: 0 0 50px 0 #00a6bc;
+    }
+    .form{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .title{
+      font-size: 35px;
+    }
+    .inp{
+      padding-bottom: 10px;
+      border-bottom: 2px solid #eee;
+    }
+    .input{
+      border: none;
+      outline: none;
+      background: none;
+      width: 260px;
+      margin-top: 40px;
+      padding-right: 10px;
+      font-size: 17px;
+      color: #0ef;
+    }
+    .input:focus {
+      outline: none;
+      border: none;
+    }
 
-.login-container {
-  max-width: 400px;
-  margin: 50px auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-  text-align: center;
-  color: #333;
-}
-
-.error-message {
-  color: #ff0000;
-  margin-bottom: 10px;
-}
-
-.login-form {
-  display: flex;
-  flex-direction: column;
-}
-
-label {
-  margin-bottom: 8px;
-}
-
-input {
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button {
-  padding: 10px;
-  background-color: #4caf50;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-.logo-image {
-  width: 90px; /* Ajusta el tamaño de la imagen según sea necesario */
-  margin-right: 10px; /* Espacio entre la imagen y el texto */
-}
-.boton {
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    background-color: #4CAF50; /* Color de fondo del botón */
-    color: white; /* Color del texto del botón */
-    border: 1px solid #4CAF50; /* Borde del botón */
-    border-radius: 5px; /* Bordes redondeados */
-    transition: background-color 0.3s;
-    margin-top: 10px; /* Espacio entre el botón y el elemento superior */
-  }
-
-  /* Cambia el color de fondo cuando pasas el ratón sobre el botón */
-  .boton:hover {
-    background-color: #24c2ea;
-  }
-  h2 {
-  text-align: left;
-  color: #333;
-  font-size: 1px;
-}
-.registro-link {
-  font-size: 18px;
-  margin-right: auto;
-  text-decoration: underline;
-  color: inherit; /* Mantener el color del texto original del contenedor */
-  cursor: pointer; /* Cambiar el cursor al pasar sobre el enlace */
-  display: inline-block; /* Asegurar que el enlace no se extienda horizontalmente */
-  margin-top: 10px; /* Espaciado entre el enlace y otros elementos */
-}
+    .submit{
+      border: none;
+      outline: none;
+      width: 288px;
+      margin-top: 25px;
+      padding: 10px 0;
+      font-size: 20px;
+      border-radius: 40px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      background: linear-gradient(45deg, #0ef, #c800ff);
+    }
+    .banner{
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 450px;
+      height: 100%;
+      background: linear-gradient(to right, #0ef, #c800ff);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+      padding-right: 70px;
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-end;
+    }
+    .wel_text{
+      font-size: 40px;
+      margin-top: -50px;
+      line-height: 50px;
+    }
+    .para{
+      margin-top: 10px;
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 1px;
+    }
+    .footer{
+      margin-top: 30px;
+      letter-spacing: 0.5px;
+      font-size: 14px;
+      display: inline;
+    }
+    .link{
+      color: #0ef; 
+      text-decoration: none;
+      transition: color 0.3s ease; 
+      display: inline;
+      margin-left: 5px;
+    }
+    .link:hover{
+      color: #fffdfd;
+      background-color: transparent;
+    }
 
 </style>
 {% endblock %}
