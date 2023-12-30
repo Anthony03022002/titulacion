@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getCliente } from '../api/clientes.api';
 
@@ -37,12 +37,29 @@ export const PagosMensuales = () => {
   }
   return (
     <div className="container">
-      <h2 className="mt-4 mb-4">{`Información del Cliente: ${cliente.nombre_completo || 'Cliente'}`}</h2>
-      <ul className="list-group">
-        <li className="list-group-item">{`Nombre Completo: ${cliente.nombre_completo || 'No disponible'}`}</li>
-        <li className="list-group-item">{`Total a Pagar: ${cliente.total_pagar || 'No disponible'}`}</li>
-        <li className="list-group-item">{`Pagos Mensuales: ${cliente.pagos_mensuales || 'No disponible'}`}</li>
-      </ul>
+     <h1 className='text-center'>Pagos Mensuales</h1>
+     <h2 style={{ textTransform: 'uppercase' }}>Cliente: {cliente.nombre_completo}</h2>
+     <p style={{ textTransform: 'uppercase' }}>Producto: {cliente.nombre_producto}</p>
+     <p>Total a Pagar: {cliente.total_pagar}</p>
+     <p>Meses diferidos: {cliente.meses_diferidos}</p>
+      <table className="table">
+        <thead>
+          <tr>
+          <th scope="col">Cedula</th>
+          <th scope="col">Pagos Mensuales</th>
+          <th scope="col">Fecha Vencimiento</th>
+          <th scope="col">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{cliente.cedula}</td>
+            <td>{cliente.pagos_mensuales}</td>
+            <td>{cliente.vencimiento}</td>
+            <td>{cliente.estado}</td>
+          </tr>
+        </tbody>
+      </table>
       <button className="btn btn-primary mt-3" onClick={handleGenerarPagoClick}>Generar Pago</button>
     </div>
   );

@@ -28,7 +28,6 @@ export const ClientesList = () => {
             <th scope="col">Total a Pagar</th>
             <th scope="col">Pagos Mensuales</th>
             <th scope="col">Vencimiento</th>
-            <th scope="col">Estado</th>
             <th scope="col">Acciones</th>
 
           </tr>
@@ -44,7 +43,6 @@ export const ClientesList = () => {
               <td>{clientes.total_pagar}</td>
               <td>{clientes.pagos_mensuales}</td>
               <td>{clientes.vencimiento}</td>
-              <td>{clientes.estado}</td>
               <td>
                 <button className="btn btn-info">
                   <Link to={`/clientes/${clientes.cedula}/pagosMensuales`}>

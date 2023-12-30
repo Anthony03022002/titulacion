@@ -4,7 +4,7 @@ import {
   createProductos,
   deleteProductos,
   updateProductos,
-  getAllProducto
+  getAllProducto,
 } from "../api/productos.api";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -13,7 +13,7 @@ export const ProductoForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue
+    setValue,
   } = useForm();
 
   const navigate = useNavigate();
@@ -28,35 +28,40 @@ export const ProductoForm = () => {
     navigate("/productos");
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     async function loadProducto() {
-        if (params.nombre_producto) {
-           const {data} = await getAllProducto(params.nombre_producto)
-           setValue('nombre_producto', data.nombre_producto)
-           setValue('precio', data.precio)
-        }
+      if (params.nombre_producto) {
+        const { data } = await getAllProducto(params.nombre_producto);
+        setValue("nombre_producto", data.nombre_producto);
+        setValue("precio", data.precio);
+      }
     }
     loadProducto();
-  }, [])
-
+  },[]);
 
   return (
-    <div>
+    <div className="container">
       <form onSubmit={onSubmit}>
-        <label>Nombre del producto</label>
-        <input
-          type="text"
-          placeholder="Nombre del producto"
-          {...register("nombre_producto", { required: true })}
-        />
-        {errors.nombre_producto && <span>Este campo es requerido</span>}
-        <label htmlFor="">Precio</label>
-        <input type="number" {...register("precio", { required: true })} />
-        {errors.precio && <span>Este campo es requerido</span>}
-        <button>Guardar</button>
+      <div className="row g-3 align-items-center">
+      <label className="col-form-label">Producto:</label>
+      <div className="col-sm-10">
+            <input
+              type="text" className="form-control"
+              placeholder="Nombre del producto"
+              {...register("nombre_producto", { required: true })}
+            />
+            {errors.nombre_producto && <span>Este campo es requerido</span>}
+          </div>
+          <div className="row g-3 align-items-center">
+          <label className="col-form-label">Precio:</label>
+            <input type="number" className="form-control"  {...register("precio", { required: true })} />
+            {errors.precio && <span>Este campo es requerido</span>}
+          </div>
+        </div>
+        <button className="btn btn-success" style={{ position: 'absolute', right: '200px',  bottom: '395px',}}>Guardar</button>
       </form>
       {params.nombre_producto && (
-        <button
+        <button className="btn btn-danger" style={{ position: 'absolute', right: '300px',  bottom: '395px', }}
           onClick={async () => {
             const aceptar = window.confirm("Seguro de eliminar el producto");
             if (aceptar) {
