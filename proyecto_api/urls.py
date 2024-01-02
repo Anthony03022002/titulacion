@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('clientes.urls')),
     path('', include('planes.urls')),
     path('', include('productos.urls')),
+    path('', include('generarPago.urls')),
      path('', views.iniciarSesion, name='iniciarsesion'),
     path('signup/', views.signup, name='signup'),
     path('pagos/', views.pagos, name='pagos'),

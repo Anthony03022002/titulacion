@@ -48,6 +48,12 @@ export const Navegacion = () => {
                 <Link to="/crear-producto" className="btn btn-dark" role="button" style={linkStyle}>
                     Crear Producto
                 </Link>
+                <Link to="/pagos" className="btn btn-dark" role="button">
+                    Pagos
+                </Link>
+                <Link to="/crear-pagos" className="btn btn-dark" role="button">
+                    crearPagos
+                </Link>
 
 
             </div>
