@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllClientes } from "../api/clientes.api";
 import { Link, useNavigate } from "react-router-dom";
 
 export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
+  const [filtroNombre, setFiltroNombre] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,8 +15,25 @@ export const ClientesList = () => {
     cargarClientes();
   }, []);
 
+  const filtrarClientes = () => {
+    const clientesFiltrados = clientes.filter(cliente =>
+      cliente.nombre_completo.toLowerCase().includes(filtroNombre.toLowerCase())
+    );
+    return clientesFiltrados;
+  };
+
   return (
     <div className="container">
+      <div className="mb-3">
+        <label htmlFor="filtroNombre" className="form-label">Buscar Cliente:</label>
+        <input
+          type="text"
+          className="form-control"
+          id="filtroNombre"
+          value={filtroNombre}
+          onChange={(e) => setFiltroNombre(e.target.value)}
+        />
+      </div>
       <table className="table">
         <thead>
           <tr>
@@ -28,29 +46,30 @@ export const ClientesList = () => {
             <th scope="col">Pagos Mensuales</th>
             <th scope="col">Vencimiento</th>
             <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody>
-          {clientes.map((clientes) => (
-            <tr key={clientes.cedula}>
-              <td>{clientes.cedula}</td>
-              <td>{clientes.nombre_completo}</td>
-              <td>{clientes.meses_diferidos}</td>
-              <td>{clientes.nombre_producto}</td>
-              <td>{clientes.cantidad_producto}</td>
-              <td>{clientes.total_pagar}</td>
-              <td>{clientes.pagos_mensuales}</td>
-              <td>{clientes.vencimiento}</td>
-              <td>{clientes.estado}</td>
+          {filtrarClientes().map((cliente) => (
+            <tr key={cliente.cedula}>
+              <td>{cliente.cedula}</td>
+              <td>{cliente.nombre_completo}</td>
+              <td>{cliente.meses_diferidos}</td>
+              <td>{cliente.nombre_producto}</td>
+              <td>{cliente.cantidad_producto}</td>
+              <td>{cliente.total_pagar}</td>
+              <td>{cliente.pagos_mensuales}</td>
+              <td>{cliente.vencimiento}</td>
+              <td>{cliente.estado}</td>
               <td>
-              <button className="btn btn-info">
-                      <Link to={`/clientes/${clientes.cedula}/pagosMensuales`}>
-                  <i className="bi bi-file-earmark-person-fill"></i>
+                <button className="btn btn-info">
+                  <Link to={`/clientes/${cliente.cedula}/pagosMensuales`}>
+                    <i className="bi bi-file-earmark-person-fill"></i>
                   </Link>
-               </button>
+                </button>
                 <button
                   className="btn btn-warning"
-                  onClick={() => navigate(`/clientes/${clientes.cedula}`)}
+                  onClick={() => navigate(`/clientes/${cliente.cedula}`)}
                 >
                   <i className="bi bi-pencil"></i>
                 </button>
