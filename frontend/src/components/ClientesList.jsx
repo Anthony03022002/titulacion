@@ -31,10 +31,12 @@ export const ClientesList = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+
+
   return (
     <div className="container">
-      <div className="mb-3">
-        <label htmlFor="filtroNombre" className="form-label">Buscar Cliente:</label>
+      <div className="mb-3" >
+        <label htmlFor="filtroNombre" className="form-label"><h4 style={{  color: '#fff' }}>Buscar Cliente:</h4></label>
         <input
           type="text"
           className="form-control"
@@ -43,8 +45,9 @@ export const ClientesList = () => {
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
       </div>
-      <table className="table">
-        <thead>
+      <h2 style={{ color: '#fff' }}>Clientes</h2>
+      <table className="table table-bordered table-dark table-striped" >
+        <thead >
           <tr>
             <th scope="col">Cedula</th>
             <th scope="col">Nombre Completo</th>
