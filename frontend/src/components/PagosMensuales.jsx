@@ -11,8 +11,10 @@ export const PagosMensuales = () => {
   const [pagos, setPagos] = useState([]);
 
   const handleGenerarPagoClick = () => {
-    navigate(`/clientes/${cedula}/generarPago`);
+    navigate(`/clientes/${cedula}/generarPago`, { state: { cedulaCliente: cliente.cedula } });
   };
+  
+  
   useEffect(() => {
     async function loadPagos() {
       const res = await getAllPagos();

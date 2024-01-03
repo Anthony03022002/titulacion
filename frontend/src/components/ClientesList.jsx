@@ -6,7 +6,7 @@ export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage, setElementsPerPage] = useState(3); // Número de elementos por página
+  const [elementsPerPage, setElementsPerPage] = useState(7); // Número de elementos por página
   const navigate = useNavigate();
 
   useEffect(() => {
