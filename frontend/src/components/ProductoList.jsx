@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { getAllProductos } from "../api/productos.api";
 import { useNavigate } from "react-router-dom";
 
 export const ProductoList = () => {
   const [productos, setProductos] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [elementsPerPage] = useState(4); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,11 +16,13 @@ export const ProductoList = () => {
     loadProductos();
   }, []);
 
+  const indexOfLastElement = currentPage * elementsPerPage;
+  const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+  const currentProductos = productos.slice(indexOfFirstElement, indexOfLastElement);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
   return (
-    // <div >
-    //     {productos.map(productos => (
-    //         <ProductosCard  key={productos.nombre_producto} productos={productos} />
-    //     ))}
     <div className="App">
       <div className="row mt-3">
         <div className="col-12 col-lg-8 offset-0 offset-lg-2">
@@ -32,7 +36,7 @@ export const ProductoList = () => {
                 </tr>
               </thead>
               <tbody className="table-group-divider">
-                {productos.map((producto) => (
+                {currentProductos.map((producto) => (
                   <tr key={producto.nombre_producto}>
                     <td>{producto.nombre_producto}</td>
                     <td>{producto.precio}</td>
@@ -51,6 +55,17 @@ export const ProductoList = () => {
               </tbody>
             </table>
           </div>
+          <nav>
+            <ul className="pagination">
+              {Array.from({ length: Math.ceil(productos.length / elementsPerPage) }, (_, i) => (
+                <li key={i + 1} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                  <button className="page-link" onClick={() => paginate(i + 1)}>
+                    {i + 1}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </div>

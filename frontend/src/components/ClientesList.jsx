@@ -6,7 +6,7 @@ export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage, setElementsPerPage] = useState(3); // Número de elementos por página
+  const [elementsPerPage] = useState(3); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export const ClientesList = () => {
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
       </div>
-      <table className="table">
+      <table className="table table-dark table-striped">
         <thead>
           <tr>
             <th scope="col">Cedula</th>
