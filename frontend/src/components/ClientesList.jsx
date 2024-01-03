@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllClientes } from "../api/clientes.api";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -6,7 +6,7 @@ export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage, setElementsPerPage] = useState(3); // Número de elementos por página
+  const [elementsPerPage,] = useState(3); // Número de elementos por página
   const navigate = useNavigate();
 
   useEffect(() => {
