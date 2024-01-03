@@ -10,18 +10,22 @@ export const GenerarPago = () => {
 
     const onSubmit = handleSubmit(async data => {
         await createPagos(data)
-        navigate('/pagos')
+        navigate('/clientes')
       
     })
   return (
     <div className="container">
       <div>
             <form onSubmit={onSubmit} >
+              <h1>formulario de pago</h1>
                 <input type="date" placeholder="fecha de pago"
                 {...register("fecha_pago", {register: true})}
                 />
                 <input type="number" placeholder="cedula"
                 {...register("cedula", {register: true})}
+                />
+                <input type="number" placeholder="Monto a pagar"
+                {...register("cantidad_pagada", {register: true})}
                 />
                 <button>Guardar Pago</button>
             </form>

@@ -21,7 +21,7 @@ export const PagosForm = () => {
     } else {
       await createPagos(data);
     }
-    navigate("/pagos");
+    navigate("/clientes");
   });
   useEffect(() => {
     async function loadPago() {
@@ -29,6 +29,7 @@ export const PagosForm = () => {
        const res = await getPago(params.id);
        setValue('cedula', res.data.cedula)
        setValue('fecha_pago', res.data.fecha_pago)
+       setValue('cantidad_pagada', res.data.cantidad_pagada)
       }
     }
     loadPago();
@@ -47,6 +48,11 @@ export const PagosForm = () => {
           placeholder="cedula"
           {...register("cedula", { register: true })}
         />
+        <input
+          type="number"
+          placeholder="Monto a pagar"
+          {...register("cantidad_pagada", { register: true })}
+        />
         <button>Guardar Pago</button>
         {params.id && (
           <button
@@ -54,7 +60,7 @@ export const PagosForm = () => {
               const aceptar = window.confirm("Esta seguro de eliminar");
               if (aceptar) {
                 await deletePagos(params.id);
-                navigate("/pagos");
+                navigate("/clientes");
               }
             }}
           >

@@ -58,32 +58,15 @@ export const PagosMensuales = () => {
       </p>
       <p>Total a Pagar: {cliente.total_pagar}</p>
       <p>Meses diferidos: {cliente.meses_diferidos}</p>
-      {/* <table className="table">
-        <thead>
-          <tr>
-            <th scope="col">Cedula</th>
-            <th scope="col">Pagos Mensuales</th>
-            <th scope="col">Fecha Vencimiento</th>
-            <th scope="col">Estado</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{cliente.cedula}</td>
-            <td>{cliente.pagos_mensuales}</td>
-            <td>{cliente.vencimiento}</td>
-            <td>{cliente.estado}</td>
-          </tr>
-        </tbody>
-      </table> */}
       
       <table className="table">
         <thead>
           <tr>
             <th scope="col">Cedula</th>
             <th scope="col">Pagos Mensuales</th>
+            <th scope="col">Monto Pagado</th>
             <th scope="col">Fecha de Pago</th>
-            <th scope="col">Estado</th>
+            <th scope="col">Accion</th>
           </tr>
         </thead>
         <tbody>
@@ -91,8 +74,13 @@ export const PagosMensuales = () => {
             <tr key={pago.id}>
               <td>{pago.cedula}</td>
               <td>{cliente.pagos_mensuales}</td>
+              <td>{pago.cantidad_pagada}</td>
               <td>{pago.fecha_pago}</td>
-              <td>{cliente.estado}</td>
+              <td><button  className="btn btn-warning"
+              onClick={()=>{
+                navigate(`/pagos/${pago.id}`)
+            }}
+              ><i className="bi bi-pencil"></i></button></td>
             </tr>
           ))}
         </tbody>
@@ -101,5 +89,6 @@ export const PagosMensuales = () => {
       </button>
       </table>
     </div>
+
   );
 };

@@ -22,6 +22,7 @@ export const PagosList = () => {
                 <p>Id:{pago.id}</p>
                  <p>Fechas pago: {pago.fecha_pago}</p>
                  <p>Cedula Cliente: {pago.cedula}</p>
+                 <p>Cantidad pagada: {pago.cantidad_pagada}</p>
                  <p>Accion
                     <button
                         onClick={()=>{
