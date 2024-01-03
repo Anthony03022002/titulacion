@@ -5,22 +5,31 @@ import { Link, useNavigate } from "react-router-dom";
 export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [elementsPerPage, setElementsPerPage] = useState(3); // Número de elementos por página
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function cargarClientes() {
-      const res = await getAllClientes();
-      setClientes(res.data);
-    }
+    const cargarClientes = async () => {
+      try {
+        const res = await getAllClientes();
+        setClientes(res.data);
+      } catch (error) {
+        console.error("Error al cargar clientes:", error);
+      }
+    };
     cargarClientes();
   }, []);
 
-  const filtrarClientes = () => {
-    const clientesFiltrados = clientes.filter(cliente =>
+  const indexOfLastElement = currentPage * elementsPerPage;
+  const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+  const currentClientes = clientes
+    .filter(cliente =>
       cliente.nombre_completo.toLowerCase().includes(filtroNombre.toLowerCase())
-    );
-    return clientesFiltrados;
-  };
+    )
+    .slice(indexOfFirstElement, indexOfLastElement);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container">
@@ -50,7 +59,7 @@ export const ClientesList = () => {
           </tr>
         </thead>
         <tbody>
-          {filtrarClientes().map((cliente) => (
+          {currentClientes.map((cliente) => (
             <tr key={cliente.cedula}>
               <td>{cliente.cedula}</td>
               <td>{cliente.nombre_completo}</td>
@@ -78,6 +87,17 @@ export const ClientesList = () => {
           ))}
         </tbody>
       </table>
+      <nav>
+        <ul className="pagination">
+          {Array.from({ length: Math.ceil(clientes.length / elementsPerPage) }, (_, i) => (
+            <li key={i + 1} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+              <button className="page-link" onClick={() => paginate(i + 1)}>
+                {i + 1}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 };

@@ -43,7 +43,7 @@ export const ProductoList = () => {
                           navigate(`/productos/${producto.nombre_producto}`);
                         }}
                       >
-                        <i class="bi bi-pencil"></i>
+                        <i className="bi bi-pencil"></i>
                       </button>
                     </td>
                   </tr>

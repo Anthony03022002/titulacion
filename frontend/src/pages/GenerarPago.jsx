@@ -1,15 +1,35 @@
-import React from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useForm } from "react-hook-form";
+import { createPagos } from "../api/generarPago.api";
+import { useNavigate } from "react-router-dom";
 
- export const GenerarPago = () => {
-  
+export const GenerarPago = () => {
 
+  const { register, handleSubmit } = useForm();
+
+    const navigate = useNavigate()
+
+    const onSubmit = handleSubmit(async data => {
+        await createPagos(data)
+        navigate('/pagos')
+      
+    })
   return (
-    <div>
-  <h2>Generar el pago de Pago</h2>
-  <h1>aqui va los datos del pago</h1>
- 
-</div>
+    <div className="container">
+      <div>
+            <form onSubmit={onSubmit} >
+                <input type="date" placeholder="fecha de pago"
+                {...register("fecha_pago", {register: true})}
+                />
+                <input type="number" placeholder="cedula"
+                {...register("cedula", {register: true})}
+                />
+                <input type="number" placeholder="cantidad a pagar"
+                {...register("cantidad_pagada", {register: true})}
+                />
+                <button>Guardar Pago</button>
+            </form>
+        </div>
+      
+    </div>
   );
 };
-

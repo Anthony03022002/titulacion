@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'clientes',
     'planes',
     'productos',
+    'generarPago',
 ]
 
 MIDDLEWARE = [
