@@ -7,3 +7,6 @@ from .models import Clientes
 class clientesView(viewsets.ModelViewSet):
     serializer_class = clientesSerializer
     queryset = Clientes.objects.all()
+
+
+    

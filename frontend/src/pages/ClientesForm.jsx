@@ -21,17 +21,16 @@ export const ClientesForm = () => {
   const [productos, setProductos] = useState([]);
   const [precioSeleccionado, setPrecioSeleccionado] = useState(null);
   const [cantidad, setCantidad] = useState(0);
-  const navigate = useNavigate();
-  const params = useParams();
   const [pagosMensuales, setPagosMensuales] = useState(0);
   const [mesesDiferidos, setMesesDiferidos] = useState(8);
 
+  const navigate = useNavigate();
+  const params = useParams();
+
   const onSubmit = handleSubmit(async (data) => {
-    // Calcula total y pagos_mensuales aquí antes de enviar los datos
     const total = cantidad * precioSeleccionado;
     const pagosMensuales = total / mesesDiferidos;
 
-    // Asigna los valores calculados a los datos antes de enviarlos
     data.total_pagar = total;
     data.pagos_mensuales = pagosMensuales;
 
@@ -42,6 +41,7 @@ export const ClientesForm = () => {
     }
     navigate("/clientes");
   });
+
   const obtenerFechaActual = () => {
     const fechaActual = new Date();
     const año = fechaActual.getFullYear();
@@ -64,6 +64,11 @@ export const ClientesForm = () => {
         setValue("total_pagar", data.total_pagar);
         setValue("pagos_mensuales", data.pagos_mensuales);
         setValue("vencimiento", data.vencimiento);
+        setValue("estado", data.estado);
+
+        // Establecer el precio seleccionado y la cantidad cuando se carga el cliente
+        setPrecioSeleccionado(data.precio_producto);
+        setCantidad(data.cantidad_producto);
       }
     }
     loadCliente();
@@ -81,31 +86,30 @@ export const ClientesForm = () => {
 
     loadProductos();
   }, []);
+
   const handleProductoChange = (event) => {
     const productoSeleccionado = event.target.value;
     const producto = productos.find(
       (p) => p.nombre_producto === productoSeleccionado
     );
 
-    // Actualizar el valor del precio seleccionado en el estado
     setPrecioSeleccionado(producto ? producto.precio : null);
-
-    // Actualizar el valor del campo del formulario utilizando setValue de react-hook-form
-    setValue("precio", producto ? producto.precio : null);
+    setCantidad(1); // Restablecer la cantidad a 1 cuando se cambia el producto
+    setValue("precio_producto", producto ? producto.precio : null);
   };
+
   const handleCantidadChange = (event) => {
     const nuevaCantidad = event.target.value;
-
     setCantidad(Number(nuevaCantidad));
   };
+  
   useEffect(() => {
     const total = cantidad * precioSeleccionado;
-
     const pagosMensuales = total / mesesDiferidos;
-    setPagosMensuales(pagosMensuales);
-
-    setValue("total", total || "");
-    setValue("pagos_mensuales", pagosMensuales || "");
+    setPagosMensuales(isNaN(pagosMensuales) ? 0 : pagosMensuales);
+  
+    setValue("total_pagar", total || "");
+    setValue("pagos_mensuales", isNaN(pagosMensuales) ? "" : pagosMensuales.toFixed(2));
   }, [cantidad, precioSeleccionado, setValue, mesesDiferidos]);
   return (
     <div className="container"> 
@@ -176,7 +180,7 @@ export const ClientesForm = () => {
           <input
             className="form-control"
             type="number"
-            {...register("total", { required: true })}
+            {...register("total_pagar", { required: true })}
             readOnly
             value={cantidad * precioSeleccionado || ""}
           />
@@ -258,11 +262,11 @@ export const ClientesForm = () => {
         <div className="col-md-6">
           <label className="form-label">Estado del Pago:</label>
           <select className="form-select" {...register("estado", { required: true })}>
-            <option value="">Selecciona el Estado del Pago</option>
-            <option value="pagado">Por pagar</option>
-            <option value="cancelado">Cancelado</option>
-          </select>
-          {errors.estado_pago && <span>Este campo es requerido</span>}
+                  <option value="">Selecciona el Estado del Pago</option>
+                  <option value="pagado">Por pagar</option>
+                 <option value="cancelado">Cancelado</option>
+         </select>
+              {errors.estado && <span>Este campo es requerido</span>}
           <button className="btn btn-success float-end" style={{ position: 'absolute', right: '250px', }}>
             Guardar Cliente
           </button>

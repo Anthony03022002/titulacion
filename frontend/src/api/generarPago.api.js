@@ -16,3 +16,7 @@ export const updatePagos= (id, pagos) => generarPagoApi.put(`/${id}/`, pagos)
 
 
 
+// export const updateTotalPagar = (clienteId, nuevoTotalPagar) => {
+//     const data = { total_pagar: nuevoTotalPagar };
+//     return generarPagoApi.patch(`/updateTotalPagar/${clienteId}/`, data);
+// };
