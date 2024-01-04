@@ -17,7 +17,7 @@ export const PagosForm = () => {
 
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
-        await updatePagos(params.id, data)
+      await updatePagos(params.id, data);
     } else {
       await createPagos(data);
     }
@@ -26,36 +26,82 @@ export const PagosForm = () => {
   useEffect(() => {
     async function loadPago() {
       if (params.id) {
-       const res = await getPago(params.id);
-       setValue('cedula', res.data.cedula)
-       setValue('fecha_pago', res.data.fecha_pago)
-       setValue('cantidad_pagada', res.data.cantidad_pagada)
+        const res = await getPago(params.id);
+        setValue("cedula", res.data.cedula);
+        setValue("fecha_pago", res.data.fecha_pago);
+        setValue("cantidad_pagada", res.data.cantidad_pagada);
       }
     }
     loadPago();
   }, []);
 
   return (
-    <div>
+    // <div>
+    //   <form onSubmit={onSubmit}>
+    //     <input
+    //       type="date"
+    //       placeholder="fecha de pago"
+    //       {...register("fecha_pago", { register: true })}
+    //     />
+    //     <input
+    //       type="number"
+    //       placeholder="cedula"
+    //       {...register("cedula", { register: true })}
+    //     />
+    //     <input
+    //       type="number"
+    //       placeholder="Monto a pagar"
+    //       {...register("cantidad_pagada", { register: true })}
+    //     />
+    //     <button>Guardar Pago</button>
+    //     {params.id && (
+    //       <button
+    //         onClick={async () => {
+    //           const aceptar = window.confirm("Esta seguro de eliminar");
+    //           if (aceptar) {
+    //             await deletePagos(params.id);
+    //             navigate("/clientes");
+    //           }
+    //         }}
+    //       >
+    //         Eliminar
+    //       </button>
+    //     )}
+    //   </form>
+    // </div>
+    <div className="container">
       <form onSubmit={onSubmit}>
-        <input
-          type="date"
-          placeholder="fecha de pago"
-          {...register("fecha_pago", { register: true })}
-        />
-        <input
-          type="number"
-          placeholder="cedula"
-          {...register("cedula", { register: true })}
-        />
-        <input
-          type="number"
-          placeholder="Monto a pagar"
-          {...register("cantidad_pagada", { register: true })}
-        />
-        <button>Guardar Pago</button>
+        <div class="row">
+          <div class="col">
+            <label className="form-label">Cedula</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Cedula"
+              {...register("cedula", { register: true })}
+            />
+          </div>
+          <div class="col">
+            <label className="form-label">Fecha de Pago</label>
+            <input
+              type="date"
+              class="form-control"
+              {...register("fecha_pago", { register: true })}
+            />
+          </div>
+          <div class="col">
+            <label className="form-label">Monto a Pagar</label>
+            <input
+              type="number"
+              class="form-control"
+              placeholder="Monto a Pagar"
+              {...register("cantidad_pagada", { register: true })}
+            />
+          </div>
+        </div>
+        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '250px', }}>Guardar Pago</button>
         {params.id && (
-          <button
+          <button className="btn btn-danger" style={{ position: 'absolute', right: '200px', }}
             onClick={async () => {
               const aceptar = window.confirm("Esta seguro de eliminar");
               if (aceptar) {
@@ -64,9 +110,9 @@ export const PagosForm = () => {
               }
             }}
           >
-            Eliminar
+            <i className="bi bi-trash"></i>
           </button>
-        )}
+         )}
       </form>
     </div>
   );

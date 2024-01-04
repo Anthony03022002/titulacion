@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAllClientes } from "../api/clientes.api";
 import { Link, useNavigate } from "react-router-dom";
 
