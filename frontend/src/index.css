@@ -1,20 +1,20 @@
-
 body {
-    background: rgb(0,172,217);
-    background: linear-gradient(90deg, rgba(0,172,217,1) 0%, rgba(16,129,218,1) 50%, rgba(0,172,217,1) 100%);}
-      
-      /* Opcional: estilos para las celdas (si se desean bordes redondos en las celdas) */
-      .table td, .table th {
-        background:#1081da;
-        background: linear-gradient( rgba(0,172,217,1) 0%, rgba(16,129,218,1) 100%, rgba(0,172,217,1) 0%);
-        border-radius: 10px; /* Establece bordes redondos para celdas */}
-       
-      
-          .wel_text{
-            font-size: 40px;
-            margin-top: -50px;
-            line-height: 50px;
-           
+  /* background: linear-gradient(90deg, rgba(214,238,242,1) 0%, rgba(179,214,236,1) 100%); */
+background: rgb(214,238,242);
+background: linear-gradient(90deg, rgba(214,238,242,1) 100%, rgba(214,238,242,1) 100%);
+}
 
-          }
-        
+
+.table td,.table th {
+ background: rgb(214,238,242);
+background: linear-gradient(90deg, rgba(214,238,242,1) 100%, rgba(214,238,242,1) 100%);
+}
+
+
+
+.wel_text {
+  font-size: 40px;
+  margin-top: -50px;
+  line-height: 50px;
+}
+

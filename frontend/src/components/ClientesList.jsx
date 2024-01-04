@@ -35,7 +35,7 @@ export const ClientesList = () => {
   return (
     <div className="container">
       <div className="mb-3" >
-        <label htmlFor="filtroNombre" className="form-label"><h4 style={{ color:'#fff'}}>Buscar Cliente:</h4></label>
+        <label htmlFor="filtroNombre" className="form-label"><h4 style={{ color:'#17494d'}}>Buscar Cliente:</h4></label>
         <input
           type="text"
           className="form-control"
@@ -44,10 +44,8 @@ export const ClientesList = () => {
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
       </div>
-      <h2 style={{ color: '#fff' }}>Clientes</h2>
-  
-       
-      <table className="table table-borderless">
+      <h3 style={{ color: '#17494d' }}>Clientes</h3>
+      <table className="table table-striped table-hover">
         <thead>
           <tr>
             <th scope="col">Cedula</th>
