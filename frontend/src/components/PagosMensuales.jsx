@@ -105,13 +105,14 @@ export const PagosMensuales = () => {
             </tr>
           ))}
         </tbody>
-        <button
+        
+      </table>
+      <button
           className="btn btn-primary mt-3"
           onClick={handleGenerarPagoClick}
         >
           Generar Pago
         </button>
-      </table>
     </div>
   );
 };

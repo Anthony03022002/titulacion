@@ -22,7 +22,11 @@ export const GenerarPago = () => {
     // Contenido principal
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(12);
-    pdf.text(`Pago realizado por el valor de: $${data.cantidad_pagada}`, 20, 40);
+    pdf.text(
+      `Pago realizado por el valor de: $${data.cantidad_pagada}`,
+      20,
+      40
+    );
     pdf.text(`Fecha de Pago: ${data.fecha_pago}`, 20, 55);
 
     // Línea divisoria
@@ -36,12 +40,10 @@ export const GenerarPago = () => {
     pdf.text("Cédula", 20, yStart);
     pdf.text("Pago Mensual", 60, yStart);
     pdf.text("Monto Pagado", 100, yStart);
-    pdf.text("Fecha de Pago", 160, yStart);
 
     pdf.text(cedulaCliente.toString(), 20, yStart + yOffset);
     pdf.text(`$${pagosMensuales}`, 60, yStart + yOffset);
     pdf.text(`$${data.cantidad_pagada}`, 100, yStart + yOffset);
-    pdf.text(data.fecha_pago, 160, yStart + yOffset);
 
     // Guardar el PDF
     pdf.save("Comprobante_de_pago.pdf");
@@ -52,32 +54,46 @@ export const GenerarPago = () => {
 
   return (
     <div className="container">
-      <div>
-        <form onSubmit={onSubmit}>
-          <h1>Formulario de Pago</h1>
-          <h3>Pago Mensual: ${pagosMensuales}</h3>
-          <input
-            type="date"
-            placeholder="Fecha de pago"
-            {...register("fecha_pago", { required: true })}
-          />
-          <input
-            type="number"
-            placeholder="Cédula"
-            value={cedulaCliente}
-            readOnly
-          />
-          <input
-            type="text"
-            placeholder="Monto Pagado"
-            {...register("cantidad_pagada", {
-              required: true,
-              pattern: /^[0-9]+(\.[0-9]{1,2})?$/, 
-            })}
-          />
+      <form onSubmit={onSubmit}>
+        <div className="d-flex justify-content-center align-items-center">
+        <h1>Formulario de Pago</h1>
+        </div>
+        <p><b>Pago Mensual:</b> ${pagosMensuales}</p>
+
+        <div className="row">
+          <div className="col">
+            <label className="form-label">Cedula</label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="First name"
+              value={cedulaCliente}
+              readOnly
+            />
+          </div>
+          <div className="col">
+            <label className="form-label">Fecha de Pago</label>
+            <input
+              type="date"
+              className="form-control"
+              {...register("fecha_pago", { required: true })}
+            />
+          </div>
+          <div className="col">
+            <label className="form-label">Monto a Pagar</label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Monto a Pagar"
+              {...register("cantidad_pagada", {
+                required: true,
+                pattern: /^[0-9]+(\.[0-9]{1,2})?$/,
+              })}
+            />
+          </div>
           <button type="submit">Guardar Pago</button>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   );
 };
