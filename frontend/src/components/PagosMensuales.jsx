@@ -13,9 +13,13 @@ export const PagosMensuales = () => {
   const [totalPagado, setTotalPagado] = useState(0); 
   const [debe, setDebe] = useState(0);
 
-
-  const handleGenerarPagoClick = async () => {
-    navigate(`/clientes/${cedula}/generarPago`, { state: { cedulaCliente: cliente.cedula } });
+  const handleGenerarPagoClick = () => {
+    navigate(`/clientes/${cedula}/generarPago`, {
+      state: {
+        cedulaCliente: cliente.cedula,
+        pagosMensuales: cliente.pagos_mensuales,
+      },
+    });
   };
   
   useEffect(() => {
