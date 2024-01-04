@@ -9,11 +9,17 @@ export const PagosMensuales = () => {
   const [cliente, setCliente] = useState({});
   const [error, setError] = useState(null);
   const [pagos, setPagos] = useState([]);
+  const [totalPagado, setTotalPagado] = useState(0); 
+  const [debe, setDebe] = useState(0);
 
   const handleGenerarPagoClick = () => {
-    navigate(`/clientes/${cedula}/generarPago`, { state: { cedulaCliente: cliente.cedula } });
+    navigate(`/clientes/${cedula}/generarPago`, {
+      state: {
+        cedulaCliente: cliente.cedula,
+        pagosMensuales: cliente.pagos_mensuales,
+      },
+    });
   };
-  
   
   useEffect(() => {
     async function loadPagos() {
@@ -22,9 +28,14 @@ export const PagosMensuales = () => {
         (pago) => pago.cedula === cliente.cedula
       );
       setPagos(pagosCliente);
+
+      const sumaPagos = pagosCliente.reduce((total, pago) => total + parseInt(pago.cantidad_pagada), 0);
+      setTotalPagado(sumaPagos);
+      const diferencia = parseInt(cliente.total_pagar) - sumaPagos;
+      setDebe(diferencia);
     }
     loadPagos();
-  }, [cliente.cedula]);
+  }, [cliente.cedula, cliente.total_pagar]);
 
   useEffect(() => {
     const fetchCliente = async () => {
@@ -58,9 +69,11 @@ export const PagosMensuales = () => {
       <p style={{ textTransform: "uppercase" }}>
         Producto: {cliente.nombre_producto}
       </p>
-      <p>Total a Pagar: {cliente.total_pagar}</p>
+      <p>Debe: ${debe}</p>
+      <p>Pagado: ${totalPagado}</p>
+      <p>Total a Pagar: ${cliente.total_pagar} </p>
       <p>Meses diferidos: {cliente.meses_diferidos}</p>
-      
+
       <table className="table">
         <thead>
           <tr>
@@ -75,22 +88,29 @@ export const PagosMensuales = () => {
           {pagos.map((pago) => (
             <tr key={pago.id}>
               <td>{pago.cedula}</td>
-              <td>{cliente.pagos_mensuales}</td>
-              <td>{pago.cantidad_pagada}</td>
+              <td>${cliente.pagos_mensuales}</td>
+              <td>${pago.cantidad_pagada}</td>
               <td>{pago.fecha_pago}</td>
-              <td><button  className="btn btn-warning"
-              onClick={()=>{
-                navigate(`/pagos/${pago.id}`)
-            }}
-              ><i className="bi bi-pencil"></i></button></td>
+              <td>
+                <button
+                  className="btn btn-warning"
+                  onClick={() => {
+                    navigate(`/pagos/${pago.id}`);
+                  }}
+                >
+                  <i className="bi bi-pencil"></i>
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
-        <button className="btn btn-primary mt-3" onClick={handleGenerarPagoClick}>
-        Generar Pago
-      </button>
+        <button
+          className="btn btn-primary mt-3"
+          onClick={handleGenerarPagoClick}
+        >
+          Generar Pago
+        </button>
       </table>
     </div>
-
   );
 };
