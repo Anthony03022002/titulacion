@@ -6,7 +6,7 @@ export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage,] = useState(3); // Número de elementos por página
+  const [elementsPerPage] = useState(3); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -32,11 +32,10 @@ export const ClientesList = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
 
-
   return (
     <div className="container">
       <div className="mb-3" >
-        <label htmlFor="filtroNombre" className="form-label"><h4 style={{  color: '#fff' }}>Buscar Cliente:</h4></label>
+        <label htmlFor="filtroNombre" className="form-label"><h4 style={{ color:'#fff'}}>Buscar Cliente:</h4></label>
         <input
           type="text"
           className="form-control"
@@ -46,8 +45,10 @@ export const ClientesList = () => {
         />
       </div>
       <h2 style={{ color: '#fff' }}>Clientes</h2>
-      <table className="table table-bordered table-dark table-striped" >
-        <thead >
+  
+       
+      <table className="table table-borderless">
+        <thead>
           <tr>
             <th scope="col">Cedula</th>
             <th scope="col">Nombre Completo</th>

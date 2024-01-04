@@ -66,7 +66,7 @@ export const ClientesForm = () => {
         setValue("vencimiento", data.vencimiento);
         setValue("estado", data.estado);
 
-        // Establecer el precio seleccionado y la cantidad cuando se carga el cliente
+        
         setPrecioSeleccionado(data.precio_producto);
         setCantidad(data.cantidad_producto);
       }

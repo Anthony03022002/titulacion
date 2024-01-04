@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { getCliente } from "../api/clientes.api";
@@ -14,7 +15,7 @@ export const PagosMensuales = () => {
 
 
   const handleGenerarPagoClick = async () => {
-    navigate(`/clientes/${cedula}/generarPago`);
+    navigate(`/clientes/${cedula}/generarPago`, { state: { cedulaCliente: cliente.cedula } });
   };
   
   useEffect(() => {
