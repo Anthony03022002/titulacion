@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 
 export const ProductoList = () => {
   const [productos, setProductos] = useState([]);
+  const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage] = useState(7); // Número de elementos por página
+  const [elementsPerPage] = useState(7); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,7 +19,11 @@ export const ProductoList = () => {
 
   const indexOfLastElement = currentPage * elementsPerPage;
   const indexOfFirstElement = indexOfLastElement - elementsPerPage;
-  const currentProductos = productos.slice(indexOfFirstElement, indexOfLastElement);
+  const currentProductos = productos
+    .filter(producto =>
+      producto.nombre_producto.toLowerCase().includes(filtroNombre.toLowerCase())
+    )
+    .slice(indexOfFirstElement, indexOfLastElement);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
@@ -26,6 +31,16 @@ export const ProductoList = () => {
     <div className="App">
       <div className="row mt-3">
         <div className="col-12 col-lg-8 offset-0 offset-lg-2">
+          <div className="mb-3">
+            <label htmlFor="filtroNombre" className="form-label">Buscar Producto:</label>
+            <input
+              type="text"
+              className="form-control"
+              id="filtroNombre"
+              value={filtroNombre}
+              onChange={(e) => setFiltroNombre(e.target.value)}
+            />
+          </div>
           <div className="table-responsive">
             <table className="table table-bordered">
               <thead>
