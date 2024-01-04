@@ -29,7 +29,7 @@ const linkStyle1 = {
   
   position: 'absolute',
   right: '35px', // Alinea el enlace a la derecha
-  color: '#06363d', // Color del texto en los enlaces
+  color: '#dd2743', // Color del texto en los enlaces
   textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
 };
 const linkStyle3 = {

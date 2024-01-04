@@ -22,7 +22,11 @@ export const GenerarPago = () => {
     // Contenido principal
     pdf.setFont("helvetica", "normal");
     pdf.setFontSize(12);
-    pdf.text(`Pago realizado por el valor de: $${data.cantidad_pagada}`, 20, 40);
+    pdf.text(
+      `Pago realizado por el valor de: $${data.cantidad_pagada}`,
+      20,
+      40
+    );
     pdf.text(`Fecha de Pago: ${data.fecha_pago}`, 20, 55);
 
     // Línea divisoria
@@ -36,12 +40,10 @@ export const GenerarPago = () => {
     pdf.text("Cédula", 20, yStart);
     pdf.text("Pago Mensual", 60, yStart);
     pdf.text("Monto Pagado", 100, yStart);
-    pdf.text("Fecha de Pago", 160, yStart);
 
     pdf.text(cedulaCliente.toString(), 20, yStart + yOffset);
     pdf.text(`$${pagosMensuales}`, 60, yStart + yOffset);
     pdf.text(`$${data.cantidad_pagada}`, 100, yStart + yOffset);
-    pdf.text(data.fecha_pago, 160, yStart + yOffset);
 
     // Guardar el PDF
     pdf.save("Comprobante_de_pago.pdf");
@@ -87,7 +89,7 @@ export const GenerarPago = () => {
             pattern: /^[0-9]+(\.[0-9]{1,2})?$/, // Acepta números con hasta 2 decimales
           })}
         />
-        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '180px', backgroundColor: '#17494d', top: '500px' }}>  Guardar Cliente
+        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '180px', backgroundColor: '#17494d', top: '500px' }}>  Guardar Pago
         </button>
       </form>
     </div>
