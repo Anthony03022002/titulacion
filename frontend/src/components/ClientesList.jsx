@@ -6,7 +6,7 @@ export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage] = useState(3); 
+  const [elementsPerPage] = useState(3);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -31,11 +31,18 @@ export const ClientesList = () => {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const linkStyles = {
+    backgroundColor: '#f9ae65',
+  } // Cambia el color de fondo del botón
+
+  const linkStyle = {
+    backgroundColor: '#3c6d79',
+  } // Cambia el color de fondo del botón
 
   return (
     <div className="container">
       <div className="mb-3" >
-        <label htmlFor="filtroNombre" className="form-label"><h4 style={{ color:'#17494d'}}>Buscar Cliente:</h4></label>
+        <label htmlFor="filtroNombre" className="form-label"><h4 style={{ color: '#3c6d79' }}>Buscar Cliente:</h4></label>
         <input
           type="text"
           className="form-control"
@@ -44,8 +51,15 @@ export const ClientesList = () => {
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
       </div>
-      <h3 style={{ color: '#17494d' }}>Clientes</h3>
-      <table className="table table-striped table-hover">
+      <h3 style={{ color: '#3c6d79' }}>Clientes</h3>
+      <table className="table table-striped table-hover" style={{
+        borderCollapse: 'separate',
+        borderSpacing: '1px',
+        border: '1px solid white',
+        borderRadius: '15px',
+        MozBorderRadius: '20px',
+        padding: '2px',
+      }}>
         <thead>
           <tr>
             <th scope="col">Cedula</th>
@@ -71,16 +85,15 @@ export const ClientesList = () => {
               <td>{cliente.pagos_mensuales}</td>
               <td>{cliente.vencimiento}</td>
               <td>
-                <button className="btn btn-info">
+                <button className="btn" role="button" style={linkStyles}>
                   <Link to={`/clientes/${cliente.cedula}/pagosMensuales`}>
-                    <i className="bi bi-file-earmark-person-fill"></i>
+                    <i className="bi bi-file-earmark-person-fill" style={{ color: '#3c6d79' }}></i>
                   </Link>
                 </button>
                 <button
-                  className="btn btn-warning"
-                  onClick={() => navigate(`/clientes/${cliente.cedula}`)}
-                >
-                  <i className="bi bi-pencil"></i>
+                  className="btn" role="button" style={linkStyle}
+                  onClick={() => navigate(`/clientes/${cliente.cedula}`)} >
+                  <i className="bi bi-pencil" style={{ color: '#f9ae65' }}></i>
                 </button>
               </td>
             </tr>

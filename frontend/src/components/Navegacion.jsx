@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 export const Navegacion = () => {
 
   const linkStyle = {
-    backgroundColor: '#17494d', // Cambia el color de fondo del botón
+    backgroundColor: '#f9ae65', // Cambia el color de fondo del botón
     position: 'absolute',
     right: '35px', // Alinea el enlace a la derecha
     color: '#fff', // Color del texto en los enlaces
     textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
   };
   const linkStyles = {
-    backgroundColor: '#17494d', // Cambia el color de fondo del botón
+    backgroundColor: '#f9ae65', // Cambia el color de fondo del botón
     position: 'absolute',
     right: '350px', // Alinea el enlace a la derecha
     color: '#fff', // Color del texto en los enlaces
@@ -18,7 +18,7 @@ export const Navegacion = () => {
   };
 
   const linkStylew = {
-    backgroundColor: '#17494d', // Cambia el color de fondo del botón
+    backgroundColor: '#f9ae65', // Cambia el color de fondo del botón
     color: '#fff', // Cambia el color del texto del botón
     position: 'absolute',
     right: '200px', // Alinea el enlace a la derecha
@@ -29,20 +29,20 @@ const linkStyle1 = {
   
   position: 'absolute',
   right: '35px', // Alinea el enlace a la derecha
-  color: '#dd2743', // Color del texto en los enlaces
-  textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
+  color: '#f9ae65', // Color del texto en los enlaces
+ 
 };
 const linkStyle3 = {
   
   position: 'absolute',
   right: '350px', // Alinea el enlace a la derecha
-  color: '#06363d', // Color del texto en los enlaces
+  color: '#3c6d79', // Color del texto en los enlaces
   textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
 };
 
 const linkStyle2 = {
  
-  color: '#06363d', // Cambia el color del texto del botón
+  color: '#3c6d79', // Cambia el color del texto del botón
   position: 'absolute',
   right: '200px', // Alinea el enlace a la derecha
   textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
@@ -60,7 +60,7 @@ const linkStyle2 = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    background: '#d6eef2',
+    background: '#linear-gradient(90deg, rgba(224,226,238,1) 100%, rgba(224,226,238,1) 100%)',
     padding: '10px 20px', // Añadimos relleno para los enlaces
   };
   const backPage = {
@@ -74,14 +74,14 @@ const linkStyle2 = {
 
   const iconStyle = {
     fontSize: '1.5rem', // Tamaño del ícono
-    color: '#06363d'
+    color: '#f9ae65'
   }
 
   return (
     <div>
       <nav style={navStyle}>
         <Link to="/" style={backPage}><i className="bi bi-arrow-left" style={iconStyle}></i></Link>
-        <h1 style={{ margin: '30', color: '#06363d' }}>Aplicación de Pagos</h1>
+        <h1 style={{ margin: '30', color: '#3c6d79' }}>Aplicación de Pagos</h1>
         <div>
           <Link to="/productos" style={linkStyle2}>
             Productos
@@ -97,10 +97,10 @@ const linkStyle2 = {
       <div style={contenedorStyle}>
 
         {/* Subtítulo debajo del título */}
-        <Link to="/crear-clientes" className="btn btn-secondary" role="button" style={linkStyles}>
+        <Link to="/crear-clientes" className="btn" role="button" style={linkStyles}>
           Crear Cliente
         </Link>
-        <Link to="/crear-producto" className="btn btn-secondary" role="button" style={linkStyle}>
+        <Link to="/crear-producto" className="btn " role="button" style={linkStyle}>
           Crear Producto
         </Link>
 

@@ -69,9 +69,9 @@ export const PagosForm = () => {
     //     )}
     //   </form>
     // </div>
-  
+
     <div className="container">
-       <h2>CREAR PAGO</h2>
+      <h2>CREAR PAGO</h2>
       <form onSubmit={onSubmit}>
         <div className="row">
           <div className="col">
@@ -101,10 +101,10 @@ export const PagosForm = () => {
             />
           </div>
         </div>
-        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '180px', backgroundColor: '#17494d', top: '300px' }}>  Guardar Pago
+        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '180px', backgroundColor: '#3c6d79', top: '300px' }}>  Guardar Pago
         </button>
         {params.id && (
-          <button className="btn btn-danger" style={{ position: 'absolute', right: '200px', }}
+          <button className="btn btn-danger" style={{ position: 'absolute', right: '130px', top: '300px' }}
             onClick={async () => {
               const aceptar = window.confirm("Esta seguro de eliminar");
               if (aceptar) {
@@ -115,7 +115,7 @@ export const PagosForm = () => {
           >
             <i className="bi bi-trash"></i>
           </button>
-         )}
+        )}
       </form>
     </div>
   );
