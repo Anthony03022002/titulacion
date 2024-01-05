@@ -43,10 +43,8 @@ export const GenerarPago = () => {
     pdf.text(`$${data.cantidad_pagada}`, 100, yStart + yOffset);
     pdf.text(data.fecha_pago, 160, yStart + yOffset);
 
-    // Guardar el PDF
+    
     pdf.save("Comprobante_de_pago.pdf");
-
-    // Redirigir a la página de pagos mensuales
     navigate(`/clientes/${cedulaCliente}/pagosMensuales`);
   });
 
