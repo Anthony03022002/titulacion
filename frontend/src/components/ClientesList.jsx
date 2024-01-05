@@ -43,7 +43,7 @@ export const ClientesList = () => {
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
       </div>
-      <table className="table table-dark table-striped">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">Cedula</th>

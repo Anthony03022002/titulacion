@@ -5,33 +5,29 @@ import { useNavigate } from "react-router-dom";
 export const PagosList = () => {
   const [pagos, setPagos] = useState([]);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [elementsPerPage] = useState(8); 
+
 
   useEffect(() => {
     async function loadPagos() {
-      const res = await getAllPagos();
-      setPagos(res.data);
+      try {
+        const res = await getAllPagos();
+        setPagos(res.data);
+      } catch (error) {
+        console.error("Error al cargar los pagos:", error);
+      }
     }
     loadPagos();
   }, []);
+  const indexOfLastElement = currentPage * elementsPerPage;
+  const indexOfFirstElement = indexOfLastElement - elementsPerPage;
+  const currentPagos = pagos.slice(indexOfFirstElement, indexOfLastElement);
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+
   return (
-    // <div>
-    //    {pagos.map(pago=>(
-    //     <div key={pago.id}>
-    //         <p>Id:{pago.id}</p>
-    //          <p>Fechas pago: {pago.fecha_pago}</p>
-    //          <p>Cedula Cliente: {pago.cedula}</p>
-    //          <p>Cantidad pagada: {pago.cantidad_pagada}</p>
-    //          <p>Accion
-    //             <button
-    //                 onClick={()=>{
-    //                     navigate(`/pagos/${pago.id}`)
-    //                 }}
-    //             >ver</button>
-    //          </p>
-    //          <hr />
-    //     </div>
-    //    ))}
-    // </div>
     <div className="container">
       <table className="table">
         <thead>
@@ -44,7 +40,7 @@ export const PagosList = () => {
           </tr>
         </thead>
         <tbody>
-          {pagos.map((pago) => (
+          {currentPagos.map((pago) => (
             <tr key={pago.id}>
               <td>{pago.id}</td>
               <td>{pago.cedula}</td>
@@ -63,6 +59,28 @@ export const PagosList = () => {
           ))}
         </tbody>
       </table>
+      <nav>
+        <ul className="pagination">
+          {Array.from(
+            { length: Math.ceil(pagos.length / elementsPerPage) },
+            (_, i) => (
+              <li
+                key={i + 1}
+                className={`page-item ${
+                  currentPage === i + 1 ? "active" : ""
+                }`}
+              >
+                <button
+                  className="page-link"
+                  onClick={() => paginate(i + 1)}
+                >
+                  {i + 1}
+                </button>
+              </li>
+            )
+          )}
+        </ul>
+      </nav>
     </div>
   );
 };
