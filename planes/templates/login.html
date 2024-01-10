@@ -1,25 +1,25 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <div class="login-container">
-    <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeBtwpi10Pn36gszpF7kbu_Z_nubUe9pZuwA&usqp=CAU" alt="Logo" class="logo-image"> -->
+<div class="login-container">
+  <!-- <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeBtwpi10Pn36gszpF7kbu_Z_nubUe9pZuwA&usqp=CAU" alt="Logo" class="logo-image"> -->
 
-    
 
-   <div class="wrapper">
+
+  <div class="wrapper">
     <form action="" method="POST" class="form">
-    <h1 class="title">Login</h1>
-    <br>
-    {% if error %}
+      <h1 class="title">Login</h1>
+      <br>
+      {% if error %}
       <p class="error-message">{{ error }}</p>
-    {% endif %}
+      {% endif %}
       {% csrf_token %}
       <div class="inp">
         <input class="input" type="text" name="username" placeholder="Ingrese su Usuario">
         <i style="font-size: 20px;" class="bi bi-person-fill"></i>
       </div>
       <div class="inp">
-        <input class="input" type="password" name="password"  placeholder="Ingrese su Contraseña">
+        <input class="input" type="password" name="password" placeholder="Ingrese su Contraseña">
         <i style="font-size: 20px;" class="bi bi-key-fill"></i>
       </div>
       <button type="submit" class="submit">Ingresar</button>
@@ -28,120 +28,135 @@
     <div class="banner">
       <h1 class="wel_text">Bienvenido</h1>
     </div>
-   </div>
-    
   </div>
-  <style>
-    *{
-      margin: 0;
-      padding: 0;
-      font-family: arial;
-      color: #fff;
-    }
-    body{
-      width: 100vw;
-      height: 100vh;
-      background: rgb(148,187,233);
-    background: radial-gradient(circle, rgba(148,187,233,1) 48%, rgba(112,188,227,1) 100%);
-      display: grid;
-      justify-content: center;
-      align-content: center;
-    }
-    ::-webkit-input-placeholder{
-      color: #eee;
-    }
-    .wrapper{
-      position: relative;
-      width: 800px;
-      height: 65vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border: 3px solid #3975e4;
-      box-shadow: 0 0 50px 0 #3577da;
-    }
-    .form{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-    .title{
-      font-size: 35px;
-    }
-    .inp{
-      padding-bottom: 10px;
-      border-bottom: 2px solid #eee;
-    }
-    .input{
-      border: none;
-      outline: none;
-      background: none;
-      width: 260px;
-      margin-top: 40px;
-      padding-right: 10px;
-      font-size: 17px;
-      color: rgb(27, 109, 216);
-    }
-    .input:focus {
-      outline: none;
-      border: none;
-    }
 
-    .submit{
-      border: none;
-      outline: none;
-      width: 288px;
-      margin-top: 25px;
-      padding: 10px 0;
-      font-size: 20px;
-      border-radius: 40px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      background: radial-gradient(circle, rgba(18,90,175,1) 0%, rgba(112,188,227,1) 99%);
-    }
-    .banner{
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 450px;
-      height: 100%;
-      background: linear-gradient(to right, rgba(18,90,175,1) 0%, rgba(112,188,227,1));
-      clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
-      padding-right: 70px;
-      text-align: right;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
-    }
-    .wel_text{
-      font-size: 40px;
-      margin-top: -50px;
-      line-height: 50px;
-    }
-    .para{
-      margin-top: 10px;
-      font-size: 18px;
-      line-height: 24px;
-      letter-spacing: 1px;
-    }
-    .footer{
-      margin-top: 30px;
-      letter-spacing: 0.5px;
-      font-size: 14px;
-      display: inline;
-    }
-    .link{
-      color:rgb(27, 109, 216); 
-      text-decoration: none;
-      transition: color 0.3s ease; 
-      display: inline;
-      margin-left: 5px;
-    }
-    .link:hover{
-      color: #fffdfd;
-      background-color: transparent;
-    }
+</div>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+    color: #f9ae65;
+  }
 
+  body {
+    width: 100vw;
+    height: 100vh;
+    background: rgb(224, 226, 238);
+    background: linear-gradient(90deg, rgba(224, 226, 238, 1) 0%, rgba(224, 226, 238, 1) 35%, rgba(224, 226, 238, 1) 100%);
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
+
+  ::-webkit-input-placeholder {
+    color: #3c6d79;
+  }
+
+  .wrapper {
+    position: relative;
+    width: 800px;
+    height: 65vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 3px solid #f9ae65;
+    /* box-shadow: 0 0 50px 0 #f9ae65; */
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .title {
+    font-size: 35px;
+  }
+
+  .inp {
+    padding-bottom: 10px;
+    border-bottom: 2px solid #3c6d79;
+  }
+
+  .input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 260px;
+    margin-top: 40px;
+    padding-right: 10px;
+    font-size: 17px;
+    color: rgb(224, 226, 238);
+  }
+
+  .input:focus {
+    outline: none;
+    border: none;
+  }
+
+  .submit {
+    border: none;
+    outline: none;
+    width: 288px;
+    margin-top: 25px;
+    padding: 10px 0;
+    font-size: 20px;
+    border-radius: 40px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: rgb(60,109,121);
+
+  }
+
+  .banner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100%;
+    background: rgb(60,109,121);
+background: radial-gradient(circle, rgba(60,109,121,1) 17%, rgba(60,109,121,1) 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 60% 100%);
+    padding-right: 70px;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .wel_text {
+    font-size: 40px;
+    margin-top: -50px;
+    line-height: 50px;
+  }
+
+  .para {
+    margin-top: 10px;
+    font-size: 18px;
+    line-height: 24px;
+    letter-spacing: 1px;
+  }
+
+  .footer {
+    margin-top: 30px;
+    letter-spacing: 0.5px;
+    font-size: 14px;
+    display: inline;
+  }
+
+  .link {
+    color: rgb(60, 109, 121,100);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline;
+    margin-left: 5px;
+  }
+
+  .link:hover {
+    color: #fffdfd;
+    background-color: transparent;
+  }
 </style>
 {% endblock %}
