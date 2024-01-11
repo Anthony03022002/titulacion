@@ -41,6 +41,7 @@ export const ProductoForm = () => {
 
   return (
     <div className="container">
+      <h2>Crear Producto</h2>
       <form onSubmit={onSubmit}>
         <div className="row">
           <div className="col">
@@ -49,6 +50,7 @@ export const ProductoForm = () => {
               type="text"
               className="form-control"
               placeholder="Producto"
+              maxLength={30}
               {...register("nombre_producto", { required: true })}
             />
             {errors.nombre_producto && <span>Este campo es requerido</span>}
@@ -64,17 +66,13 @@ export const ProductoForm = () => {
           </div>
           {errors.precio && <span>Este campo es requerido</span>}
         </div>
-        <button
-          className="btn btn-success"
-          style={{ position: "absolute", right: "200px", bottom: "395px" }}
-        >
-          Guardar
+        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '230px', backgroundColor: '#17494d', top: '300px' }}>  Guardar Pago
         </button>
       </form>
       {params.nombre_producto && (
         <button
           className="btn btn-danger"
-          style={{ position: "absolute", right: "300px", bottom: "395px" }}
+          style={{ position: "absolute", right: "180px", top:'300px'  }}
           onClick={async () => {
             const aceptar = window.confirm("Seguro de eliminar el producto");
             if (aceptar) {
@@ -83,7 +81,7 @@ export const ProductoForm = () => {
             }
           }}
         >
-          Eliminar
+          <i className="bi bi-trash"></i>
         </button>
       )}
     </div>

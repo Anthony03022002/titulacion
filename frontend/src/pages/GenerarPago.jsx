@@ -53,46 +53,44 @@ export const GenerarPago = () => {
   });
 
   return (
-    <div className="container">
-      <form onSubmit={onSubmit}>
-        <div className="d-flex justify-content-center align-items-center">
-        <h1>Formulario de Pago</h1>
-        </div>
-        <p><b>Pago Mensual:</b> ${pagosMensuales}</p>
 
-        <div className="row">
-          <div className="col">
-            <label className="form-label">Cedula</label>
-            <input
-              type="number"
-              className="form-control"
-              placeholder="First name"
-              value={cedulaCliente}
-              readOnly
-            />
-          </div>
-          <div className="col">
-            <label className="form-label">Fecha de Pago</label>
-            <input
-              type="date"
-              className="form-control"
-              {...register("fecha_pago", { required: true })}
-            />
-          </div>
-          <div className="col">
-            <label className="form-label">Monto a Pagar</label>
-            <input
-              type="number"
-              className="form-control"
-              placeholder="Monto a Pagar"
-              {...register("cantidad_pagada", {
-                required: true,
-                pattern: /^[0-9]+(\.[0-9]{1,2})?$/,
-              })}
-            />
-          </div>
-          <button type="submit">Guardar Pago</button>
-        </div>
+    <div className="container">
+      <form onSubmit={onSubmit} >
+        <h1>Formulario de Pago</h1>
+        <h3>Pago Mensual: ${pagosMensuales}</h3>
+        <label htmlFor="inputEmail4" className="form-label">
+          Fecha:
+        </label>
+        <input
+          className="form-control"
+          type="date"
+          placeholder="Fecha de pago"
+          {...register("fecha_pago", { required: true })}
+        />
+        <label htmlFor="inputEmail4" className="form-label">
+          Cedula:
+        </label>
+        <input
+          className="form-control"
+          type="number"
+          placeholder="Cédula"
+          value={cedulaCliente}
+          readOnly
+        />
+        <label htmlFor="inputEmail4" className="form-label">
+          Monto a pagar:
+        </label>
+        <input
+          className="form-control"
+          type="text"
+          placeholder="Monto Pagado"
+          {...register("cantidad_pagada", {
+            required: true,
+            pattern: /^[0-9]+(\.[0-9]{1,2})?$/, // Acepta números con hasta 2 decimales
+          })}
+        />
+        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '180px', backgroundColor: '#17494d', top: '500px' }}>  Guardar Pago
+        </button>
       </form>
     </div>
   );

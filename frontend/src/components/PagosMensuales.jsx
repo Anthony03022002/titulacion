@@ -61,6 +61,10 @@ export const PagosMensuales = () => {
   if (error) {
     return <div className="alert alert-danger">Error: {error}</div>;
   }
+  const linkStyle = {
+    backgroundColor: '#3c6d79',
+    color: '#fff'
+  } 
   return (
     <div className="container">
       <h1 className="text-center">Pagos Mensuales</h1>
@@ -75,7 +79,14 @@ export const PagosMensuales = () => {
       <p>Total a Pagar: ${cliente.total_pagar} </p>
       <p>Meses diferidos: {cliente.meses_diferidos}</p>
 
-      <table className="table">
+      <table className="table clase_table" style={{
+        borderCollapse: 'separate',
+        borderSpacing: '10px',
+        border: '1px solid white',
+        borderRadius: '15px',
+        MozBorderRadius: '20px',
+        padding: '2px',
+      }}>
         <thead>
           <tr>
             <th scope="col">Cedula</th>
@@ -94,12 +105,12 @@ export const PagosMensuales = () => {
               <td>{pago.fecha_pago}</td>
               <td>
                 <button
-                  className="btn btn-warning"
+                   className="btn" role="button" style={linkStyle}
                   onClick={() => {
                     navigate(`/pagos/${pago.id}`);
                   }}
                 >
-                  <i className="bi bi-pencil"></i>
+                   <i className="bi bi-pencil" style={{ color: '#f9ae65' }}></i>
                 </button>
               </td>
             </tr>
@@ -108,10 +119,10 @@ export const PagosMensuales = () => {
         
       </table>
       <button
-          className="btn btn-primary mt-3"
+             className="btn" role="button" style={linkStyle}
           onClick={handleGenerarPagoClick}
         >
-          Generar Pago
+          Generar Pago 
         </button>
     </div>
   );

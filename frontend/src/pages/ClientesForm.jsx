@@ -1,6 +1,6 @@
 // En el archivo ClientesForm.jsx
 import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import {
   createCliente,
   deleteCliente,
@@ -16,6 +16,7 @@ export const ClientesForm = () => {
     handleSubmit,
     formState: { errors },
     setValue,
+    control,
   } = useForm();
 
   const [productos, setProductos] = useState([]);
@@ -66,7 +67,6 @@ export const ClientesForm = () => {
         setValue("vencimiento", data.vencimiento);
         setValue("estado", data.estado);
 
-        
         setPrecioSeleccionado(data.precio_producto);
         setCantidad(data.cantidad_producto);
       }
@@ -102,28 +102,54 @@ export const ClientesForm = () => {
     const nuevaCantidad = event.target.value;
     setCantidad(Number(nuevaCantidad));
   };
-  
+
   useEffect(() => {
     const total = cantidad * precioSeleccionado;
     const pagosMensuales = total / mesesDiferidos;
     setPagosMensuales(isNaN(pagosMensuales) ? 0 : pagosMensuales);
-  
+
     setValue("total_pagar", total || "");
-    setValue("pagos_mensuales", isNaN(pagosMensuales) ? "" : pagosMensuales.toFixed(2));
+    setValue(
+      "pagos_mensuales",
+      isNaN(pagosMensuales) ? "" : pagosMensuales.toFixed(2)
+    );
   }, [cantidad, precioSeleccionado, setValue, mesesDiferidos]);
   return (
-    <div className="container"> 
+    <div className="container">
       <form onSubmit={onSubmit} className="row g-3">
         <div className="col-md-6">
           <label htmlFor="inputEmail4" className="form-label">
             Cedula
           </label>
-          <input
-            type="number"
-            className="form-control"
-            placeholder="Ingrese su cedula"
-            {...register("cedula", { required: true })}
+          <Controller
+            name="cedula"
+            control={control}
+            render={({ field }) => (
+              <>
+                <input
+                  {...field}
+                  type="text"
+                  className="form-control"
+                  placeholder="Ingrese su cedula"
+                  maxLength={10}
+                  pattern="[0-9]*"
+                  {...register("cedula", { required: true })}
+                />
+              </>
+            )}
+            rules={{
+              required: "La cédula es requerida",
+              pattern: {
+                value: /^[0-9]*$/,
+                message: "La cédula debe contener solo números",
+              },
+              maxLength: {
+                value: 10,
+                message: "La cédula debe tener máximo 10 dígitos",
+              },
+            }}
           />
+
           {errors.cedula && <span>La cedula es requerida</span>}
         </div>
         <div className="col-md-6">
@@ -144,6 +170,7 @@ export const ClientesForm = () => {
             type="text"
             className="form-control"
             placeholder="Nombre Completo"
+            maxLength={30}
             {...register("nombre_completo", { required: true })}
           />
         </div>
@@ -171,6 +198,7 @@ export const ClientesForm = () => {
             type="email"
             className="form-control"
             placeholder="Correo Electronico"
+            maxLength={50}
             {...register("email", { required: true })}
           />
           {errors.email && <span>Este campo es requerido</span>}
@@ -189,10 +217,10 @@ export const ClientesForm = () => {
           <label htmlFor="inputEmail4" className="form-label">
             Direccion
           </label>
-          <input
-            type="text"
+          <textarea
             className="form-control"
-            placeholder="Direccion"
+            placeholder="Ingrese su dirección"
+            maxLength={100}
             {...register("direccion", { required: true })}
           />
         </div>
@@ -261,18 +289,25 @@ export const ClientesForm = () => {
         </div>
         <div className="col-md-6">
           <label className="form-label">Estado del Pago:</label>
-          <select className="form-select" {...register("estado", { required: true })}>
-                  <option value="">Selecciona el Estado del Pago</option>
-                  <option value="pagado">Por pagar</option>
-                 <option value="cancelado">Cancelado</option>
-         </select>
-              {errors.estado && <span>Este campo es requerido</span>}
-          <button className="btn btn-success float-end" style={{ position: 'absolute', right: '250px', }}>
+          <select
+            className="form-select"
+            {...register("estado", { required: true })}
+          >
+            <option value="">Selecciona el Estado del Pago</option>
+            <option value="pagado">Por pagar</option>
+            <option value="cancelado">Cancelado</option>
+          </select>
+          {errors.estado && <span>Este campo es requerido</span>}
+          <button
+            className="btn btn-success float-end"
+            style={{ position: "absolute", right: "175px" }}
+          >
             Guardar Cliente
           </button>
           {params.cedula && (
             <button
-              className="btn btn-danger" style={{ position: 'absolute', right: '200px', }}
+              className="btn btn-danger"
+              style={{ position: "absolute", right: "320px" }}
               onClick={async () => {
                 const aceptar = window.confirm("Esta seguro de eliminar");
                 if (aceptar) {
@@ -285,7 +320,6 @@ export const ClientesForm = () => {
             </button>
           )}
         </div>
-
       </form>
     </div>
   );
