@@ -12,18 +12,12 @@ export const Navegacion = () => {
   const linkStyles = {
     backgroundColor: '#f9ae65', // Cambia el color de fondo del botón
     position: 'absolute',
-    right: '350px', // Alinea el enlace a la derecha
+    right: '190px', // Alinea el enlace a la derecha
     color: '#fff', // Color del texto en los enlaces
     textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
   };
 
-  const linkStylew = {
-    backgroundColor: '#f9ae65', // Cambia el color de fondo del botón
-    color: '#fff', // Cambia el color del texto del botón
-    position: 'absolute',
-    right: '200px', // Alinea el enlace a la derecha
-    textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
-  };
+  
 // estilos links 
 const linkStyle1 = {
   
@@ -35,7 +29,7 @@ const linkStyle1 = {
 const linkStyle3 = {
   
   position: 'absolute',
-  right: '350px', // Alinea el enlace a la derecha
+  right: '250px', // Alinea el enlace a la derecha
   color: '#3c6d79', // Color del texto en los enlaces
   textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
 };
@@ -44,7 +38,7 @@ const linkStyle2 = {
  
   color: '#3c6d79', // Cambia el color del texto del botón
   position: 'absolute',
-  right: '200px', // Alinea el enlace a la derecha
+  right: '150px', // Alinea el enlace a la derecha
   textDecoration: 'none', // Quitamos la decoración predeterminada del enlace
 };
 
@@ -95,17 +89,12 @@ const linkStyle2 = {
         </div>
       </nav>
       <div style={contenedorStyle}>
-
         {/* Subtítulo debajo del título */}
         <Link to="/crear-clientes" className="btn" role="button" style={linkStyles}>
           Crear Cliente
         </Link>
         <Link to="/crear-producto" className="btn " role="button" style={linkStyle}>
           Crear Producto
-        </Link>
-
-        <Link to="/crear-pagos" className="btn" role="button" style={linkStylew}>
-          Crear Pagos
         </Link>
 
       </div>
