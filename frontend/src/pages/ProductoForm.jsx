@@ -7,6 +7,7 @@ import {
   getAllProducto,
 } from "../api/productos.api";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export const ProductoForm = () => {
   const {
@@ -22,8 +23,24 @@ export const ProductoForm = () => {
   const onSubmit = handleSubmit(async (data) => {
     if (params.nombre_producto) {
       await updateProductos(params.nombre_producto, data);
+      toast.success("Actualizado correctamente", {
+        position: "top-center",
+        style: {
+          background: "#101010",
+          color: "#fff",
+          marginTop: "60px",
+        },
+      });
     } else {
       await createProductos(data);
+      toast.success("Producto creado correctamente", {
+        position: "top-center",
+        style: {
+          background: "#101010",
+          color: "#fff",
+          marginTop: "60px",
+        },
+      });
     }
     navigate("/productos");
   });
@@ -66,17 +83,35 @@ export const ProductoForm = () => {
           </div>
           {errors.precio && <span>Este campo es requerido</span>}
         </div>
-        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '230px', backgroundColor: '#17494d', top: '300px' }}>  Guardar Pago
+        <button
+          className="btn btn-success float-end"
+          style={{
+            position: "absolute",
+            right: "230px",
+            backgroundColor: "#17494d",
+            top: "300px",
+          }}
+        >
+          {" "}
+          Guardar Producto
         </button>
       </form>
       {params.nombre_producto && (
         <button
           className="btn btn-danger"
-          style={{ position: "absolute", right: "180px", top:'300px'  }}
+          style={{ position: "absolute", right: "180px", top: "300px" }}
           onClick={async () => {
             const aceptar = window.confirm("Seguro de eliminar el producto");
             if (aceptar) {
               await deleteProductos(params.nombre_producto);
+              toast.success("Eliminado Correctamente", {
+                position: "top-center",
+                style: {
+                  background: "#101010",
+                  color: "#fff",
+                  marginTop: "60px",
+                },
+              });
               navigate("/productos");
             }
           }}

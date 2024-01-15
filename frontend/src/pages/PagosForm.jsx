@@ -7,6 +7,8 @@ import {
 } from "../api/generarPago.api";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { toast } from "react-hot-toast";
+
 
 export const PagosForm = () => {
   const { register, handleSubmit, setValue } = useForm();
@@ -18,8 +20,24 @@ export const PagosForm = () => {
   const onSubmit = handleSubmit(async (data) => {
     if (params.id) {
       await updatePagos(params.id, data);
+      toast.success("Actualizado correctamente", {
+        position: "top-center",
+        style: {
+          background: "#101010",
+          color: "#fff",
+          marginTop: "60px",
+        },
+      });
     } else {
       await createPagos(data);
+      toast.success("Pago creado correctamente", {
+        position: "top-center",
+        style: {
+          background: "#101010",
+          color: "#fff",
+          marginTop: "60px",
+        },
+      });
     }
     navigate("/clientes");
   });
@@ -76,6 +94,14 @@ export const PagosForm = () => {
               const aceptar = window.confirm("Esta seguro de eliminar");
               if (aceptar) {
                 await deletePagos(params.id);
+                toast.success("Eliminado Correctamente", {
+                  position: "top-center",
+                  style: {
+                    background: "#101010",
+                    color: "#fff",
+                    marginTop: "60px",
+                  },
+                });
                 navigate("/clientes");
               }
             }}

@@ -9,6 +9,7 @@ import {
 } from "../api/clientes.api";
 import { getAllProductos } from "../api/productos.api";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 export const ClientesForm = () => {
   const {
@@ -37,8 +38,24 @@ export const ClientesForm = () => {
 
     if (params.cedula) {
       await updateCliente(params.cedula, data);
+      toast.success('Actualizado correctamente', {
+        position: 'top-center',
+        style:{
+          background: '#101010',
+          color:"#fff",
+          marginTop: '60px',
+        }
+      })
     } else {
       await createCliente(data);
+      toast.success('Cliente creado correctamente', {
+        position: 'top-center',
+        style:{
+          background: '#101010',
+          color:"#fff",
+          marginTop: '60px',
+        }
+      })
     }
     navigate("/clientes");
   });
@@ -312,6 +329,14 @@ export const ClientesForm = () => {
                 const aceptar = window.confirm("Esta seguro de eliminar");
                 if (aceptar) {
                   await deleteCliente(params.cedula);
+                  toast.success('Eliminado Correctamente', {
+                    position: 'top-center',
+                    style:{
+                      background: '#101010',
+                      color:"#fff",
+                      marginTop: '60px',
+                    }
+                  })
                   navigate("/clientes");
                 }
               }}
