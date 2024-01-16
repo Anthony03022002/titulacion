@@ -131,7 +131,7 @@ export const ClientesForm = () => {
           <input
             className="form-control"
             type="number"
-            {...register("total_pagar", { required: true })}
+            {...register("precio_producto", { required: true })}
             readOnly
             value={precioSeleccionado || ""}
           />
@@ -267,12 +267,12 @@ export const ClientesForm = () => {
                  <option value="cancelado">Cancelado</option>
          </select>
               {errors.estado && <span>Este campo es requerido</span>}
-          <button className="btn btn-success float-end" style={{ position: 'absolute', right: '250px', }}>
+          <button className="btn btn-success float-end" style={{ position: 'absolute', right: '175px' }}>
             Guardar Cliente
           </button>
           {params.cedula && (
             <button
-              className="btn btn-danger" style={{ position: 'absolute', right: '200px', }}
+              className="btn btn-danger" style={{ position: 'absolute', right: '320px', }}
               onClick={async () => {
                 const aceptar = window.confirm("Esta seguro de eliminar");
                 if (aceptar) {

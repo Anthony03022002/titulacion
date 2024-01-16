@@ -37,31 +37,41 @@ export const ProductoForm = () => {
       }
     }
     loadProducto();
-  },[]);
+  }, []);
 
   return (
     <div className="container">
+      <h2>Crear Producto</h2>
       <form onSubmit={onSubmit}>
-      <div className="row g-3 align-items-center">
-      <label className="col-form-label">Producto:</label>
-      <div className="col-sm-10">
+        <div className="row">
+          <div className="col">
+            <label className="form-label">Producto</label>
             <input
-              type="text" className="form-control"
-              placeholder="Nombre del producto"
+              type="text"
+              className="form-control"
+              placeholder="Producto"
               {...register("nombre_producto", { required: true })}
             />
             {errors.nombre_producto && <span>Este campo es requerido</span>}
           </div>
-          <div className="row g-3 align-items-center">
-          <label className="col-form-label">Precio:</label>
-            <input type="number" className="form-control"  {...register("precio", { required: true })} />
-            {errors.precio && <span>Este campo es requerido</span>}
+          <div className="col">
+            <label className="form-label">Precio</label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Precio"
+              {...register("precio", { required: true })}
+            />
           </div>
+          {errors.precio && <span>Este campo es requerido</span>}
         </div>
-        <button className="btn btn-success" style={{ position: 'absolute', right: '200px',  bottom: '395px',}}>Guardar</button>
+        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '230px', backgroundColor: '#17494d', top: '300px' }}>  Guardar Pago
+        </button>
       </form>
       {params.nombre_producto && (
-        <button className="btn btn-danger" style={{ position: 'absolute', right: '300px',  bottom: '395px', }}
+        <button
+          className="btn btn-danger"
+          style={{ position: "absolute", right: "180px", top:'300px'  }}
           onClick={async () => {
             const aceptar = window.confirm("Seguro de eliminar el producto");
             if (aceptar) {
@@ -70,7 +80,7 @@ export const ProductoForm = () => {
             }
           }}
         >
-          Eliminar
+          <i className="bi bi-trash"></i>
         </button>
       )}
     </div>
