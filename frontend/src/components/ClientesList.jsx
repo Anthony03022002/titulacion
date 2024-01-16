@@ -6,7 +6,7 @@ export const ClientesList = () => {
   const [clientes, setClientes] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage] = useState(3);
+  const [elementsPerPage] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -51,7 +51,15 @@ export const ClientesList = () => {
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
       </div>
-      <table className="table">
+      <h3 style={{ color: '#3c6d79' }}>Clientes</h3>
+      <table className="table table-striped table-hover" style={{
+        borderCollapse: 'separate',
+        borderSpacing: '1px',
+        border: '1px solid white',
+        borderRadius: '15px',
+        MozBorderRadius: '20px',
+        padding: '2px',
+      }}>
         <thead>
           <tr>
             <th scope="col">Cedula</th>

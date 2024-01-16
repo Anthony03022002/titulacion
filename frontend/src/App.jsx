@@ -8,6 +8,7 @@ import { Navegacion } from "./components/Navegacion";
 import { GenerarPago } from "./pages/GenerarPago";
 import { PagosList } from "./pages/PagosList";
 import { PagosForm } from "./pages/PagosForm";
+import toast, { Toaster } from 'react-hot-toast';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/crear-pagos" element={<PagosForm />} />
         <Route path="/pagos/:id" element={<PagosForm />} />
       </Routes>
+      <Toaster/>
     </BrowserRouter>
   );
 };

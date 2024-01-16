@@ -6,7 +6,7 @@ export const ProductoList = () => {
   const [productos, setProductos] = useState([]);
   const [filtroNombre, setFiltroNombre] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [elementsPerPage] = useState(4);
+  const [elementsPerPage] = useState(5);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -44,7 +44,15 @@ export const ProductoList = () => {
             />
       </div>
      </div>
-      <table className="table">
+      <h2>Productos</h2>
+      <table className="table table-striped table-hover" style={{
+        borderCollapse: 'separate',
+        borderSpacing: '1px',
+        border: '1px solid white',
+        borderRadius: '15px',
+        MozBorderRadius: '20px',
+        padding: '2px',
+      }}>
         <thead>
           <tr>
             <th scope="col">Nombre del producto</th>
