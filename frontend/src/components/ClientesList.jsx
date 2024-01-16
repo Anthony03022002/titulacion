@@ -51,15 +51,7 @@ export const ClientesList = () => {
           onChange={(e) => setFiltroNombre(e.target.value)}
         />
       </div>
-      <h3 style={{ color: '#3c6d79' }}>Clientes</h3>
-      <table className="table table-striped table-hover" style={{
-        borderCollapse: 'separate',
-        borderSpacing: '1px',
-        border: '1px solid white',
-        borderRadius: '15px',
-        MozBorderRadius: '20px',
-        padding: '2px',
-      }}>
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">Cedula</th>

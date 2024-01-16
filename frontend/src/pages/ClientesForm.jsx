@@ -131,7 +131,7 @@ export const ClientesForm = () => {
           <input
             className="form-control"
             type="number"
-            {...register("total_pagar", { required: true })}
+            {...register("precio_producto", { required: true })}
             readOnly
             value={precioSeleccionado || ""}
           />

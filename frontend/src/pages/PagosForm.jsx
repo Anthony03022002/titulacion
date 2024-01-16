@@ -36,39 +36,7 @@ export const PagosForm = () => {
   }, []);
 
   return (
-    // <div>
-    //   <form onSubmit={onSubmit}>
-    //     <input
-    //       type="date"
-    //       placeholder="fecha de pago"
-    //       {...register("fecha_pago", { register: true })}
-    //     />
-    //     <input
-    //       type="number"
-    //       placeholder="cedula"
-    //       {...register("cedula", { register: true })}
-    //     />
-    //     <input
-    //       type="number"
-    //       placeholder="Monto a pagar"
-    //       {...register("cantidad_pagada", { register: true })}
-    //     />
-    //     <button>Guardar Pago</button>
-    //     {params.id && (
-    //       <button
-    //         onClick={async () => {
-    //           const aceptar = window.confirm("Esta seguro de eliminar");
-    //           if (aceptar) {
-    //             await deletePagos(params.id);
-    //             navigate("/clientes");
-    //           }
-    //         }}
-    //       >
-    //         Eliminar
-    //       </button>
-    //     )}
-    //   </form>
-    // </div>
+
 
     <div className="container">
       <h2>CREAR PAGO</h2>

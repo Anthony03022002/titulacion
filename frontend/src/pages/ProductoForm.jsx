@@ -65,7 +65,7 @@ export const ProductoForm = () => {
           </div>
           {errors.precio && <span>Este campo es requerido</span>}
         </div>
-        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '230px', backgroundColor: '#17494d', top: '300px' }}>  Guardar Pago
+        <button className="btn btn-success float-end" style={{ position: 'absolute', right: '230px', backgroundColor: '#17494d', top: '300px' }}>  Guardar Producto
         </button>
       </form>
       {params.nombre_producto && (
