@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  titulacion-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: pagosdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - backend-network
+
+  titulacion-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: titulacion-web
+    ports:
+      - "8000:8000"
+    depends_on:
+      - titulacion-db
+    links:
+      - titulacion-db
+    networks:
+      - backend-network
+      - frontend-network
+
+networks:
+  backend-network:
+  frontend-network:
