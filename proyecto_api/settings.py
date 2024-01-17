@@ -98,7 +98,7 @@ DATABASES = {
         'NAME': 'pagosdb',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'titulacion-titulacion-db-1',
+        'HOST': '172.17.0.2',  # Asegúrate de que no haya espacios al final
         'PORT': '5432',
     }
 }
