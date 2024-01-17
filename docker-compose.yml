@@ -21,12 +21,5 @@ services:
       - "8000:8000"
     depends_on:
       - titulacion-db
-    links:
-      - titulacion-db
     networks:
       - backend-network
-      - frontend-network
-
-networks:
-  backend-network:
-  frontend-network:
