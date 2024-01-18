@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-tr3pnfm+$dq6v&vod6_t1cmk-+h^+s2#0_h$p+-jm^$x=m39_@
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -81,27 +81,17 @@ WSGI_APPLICATION = 'proyecto_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 # base de datos local
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'pagosdb',
-#         'USER': 'postgres',
-#         'PASSWORD': 'postgres',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-# base de datos del docker
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pagosdb',
         'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'titulacion-db',  # Usa el nombre del servicio
-        'PORT': '5432',
+       'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+         'PORT': '5432',
     }
-}
+ }
+
 
 
 # Password validation
