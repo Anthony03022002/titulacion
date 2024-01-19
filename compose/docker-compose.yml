@@ -1,15 +1,15 @@
 version: '3'
 services:
-  frontend:
-    build:
-      context: ../frontend_base/frontend
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      BACKEND_URL: db/api
-    depends_on:
-      - backend
+  # frontend:
+  #   build:
+  #     context: ../frontend_base/frontend
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3000:3000"
+  #   environment:
+  #     BACKEND_URL: db/api
+  #   depends_on:
+  #     - backend
 
   backend:
     build:
